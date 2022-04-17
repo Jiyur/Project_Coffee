@@ -17,10 +17,14 @@ import android.widget.Toast;
 import com.example.project_login.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 public class VerifyOTPActivity extends AppCompatActivity {
     private EditText inputCode1,inputCode2,inputCode3,inputCode4,inputCode5,inputCode6;
@@ -58,40 +62,71 @@ public class VerifyOTPActivity extends AppCompatActivity {
                     Toast.makeText(VerifyOTPActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                String code=inputCode1.getText().toString()+
+                        inputCode2.getText().toString()+
+                        inputCode3.getText().toString()+
+                        inputCode4.getText().toString()+
+                        inputCode5.getText().toString()+
+                        inputCode6.getText().toString();
+
+                if(verificationId!=null){
+                    progressBar.setVisibility(View.VISIBLE);
+                    buttonVerify.setVisibility(View.INVISIBLE);
+                    PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
+                            verificationId,
+                            code
+                    );
+                    FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    progressBar.setVisibility(View.GONE);
+                                    buttonVerify.setVisibility(View.VISIBLE);
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(VerifyOTPActivity.this, "Success", Toast.LENGTH_SHORT).show();
+//                                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+//                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                                        startActivity(intent);
+                                    }
+                                    else{
+                                        Toast.makeText(VerifyOTPActivity.this, "Invalid OTP code", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
             }
         });
-        String code=inputCode1.getText().toString()+
-                inputCode2.getText().toString()+
-                inputCode3.getText().toString()+
-                inputCode4.getText().toString()+
-                inputCode5.getText().toString()+
-                inputCode6.getText().toString();
-        if(verificationId!=null){
-            progressBar.setVisibility(View.VISIBLE);
-            buttonVerify.setVisibility(View.INVISIBLE);
-            PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
-                    verificationId,
-                    code
-            );
-            FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressBar.setVisibility(View.GONE);
-                            buttonVerify.setVisibility(View.VISIBLE);
-                            if(task.isSuccessful()){
-                                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            }
-                            else{
-                                Toast.makeText(VerifyOTPActivity.this, "Invalid OTP code", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
 
 
+        findViewById(R.id.textResendOTP).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhoneAuthOptions options=PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+                        .setPhoneNumber("+84"+getIntent().getStringExtra("mobile"))
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setActivity(VerifyOTPActivity.this)
+                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                            @Override
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+                            }
+
+                            @Override
+                            public void onVerificationFailed(@NonNull FirebaseException e) {
+
+                                Toast.makeText(VerifyOTPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onCodeSent(@NonNull String newVerificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                verificationId=newVerificationId;
+                                Toast.makeText(VerifyOTPActivity.this, "OTP sent", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .build();
+
+                PhoneAuthProvider.verifyPhoneNumber(options);
+            }
+        });
     }
 
     private void setupOTPInputs(){

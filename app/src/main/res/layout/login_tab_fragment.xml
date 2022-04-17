@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <EditText
-        android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:drawableStart="@drawable/ic_baseline_phone_24"
         android:drawablePadding="10dp"
         android:id="@+id/phone"
         android:layout_width="0dp"
@@ -16,7 +16,6 @@
         android:textSize="16sp"
         android:hint="Phone Number"
         android:backgroundTint="@color/white"
-        android:paddingStart="15dp"
         android:letterSpacing="0.03"
         android:padding="15dp"
         android:background="@drawable/edit_text_bg"
@@ -30,7 +29,7 @@
     />
 
     <EditText
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
         android:drawablePadding="10dp"
         android:id="@+id/pass"
         android:layout_width="0dp"
@@ -41,7 +40,6 @@
         android:textSize="16sp"
         android:fontFamily="@font/otk"
         android:background="@drawable/edit_text_bg"
-        android:paddingStart="15dp"
         android:padding="15dp"
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="20dp"
@@ -80,7 +78,7 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias="1"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         app:flow_horizontalBias="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pass"

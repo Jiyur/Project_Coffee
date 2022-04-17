@@ -29,8 +29,7 @@ public class SendOTPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_send_otpactivity);
 
         final EditText inputMobile=findViewById(R.id.inputMobile);
-        Button buttonGetOTP=findViewById(R.id.getOTP_BTN);
-
+        final Button buttonGetOTP=findViewById(R.id.getOTP_BTN);
         final ProgressBar progressBar=findViewById(R.id.progressBar);
 
         mAuth=FirebaseAuth.getInstance();
@@ -43,10 +42,11 @@ public class SendOTPActivity extends AppCompatActivity {
                 }
                 progressBar.setVisibility(View.VISIBLE);
                 buttonGetOTP.setVisibility(View.INVISIBLE);
+
                 String phoneNum=inputMobile.getText().toString().trim();
                 PhoneAuthOptions options=PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber("+84"+phoneNum)
-                        .setTimeout(60L,TimeUnit.SECONDS)
+                        .setTimeout(120L,TimeUnit.SECONDS)
                         .setActivity(SendOTPActivity.this)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
@@ -63,7 +63,6 @@ public class SendOTPActivity extends AppCompatActivity {
                             }
                             @Override
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(verificationId,forceResendingToken);
                                 progressBar.setVisibility(View.GONE);
                                 buttonGetOTP.setVisibility(View.VISIBLE);
                                 Intent intent=new Intent(getApplicationContext(),VerifyOTPActivity.class);
