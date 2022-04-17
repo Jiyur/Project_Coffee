@@ -14,6 +14,8 @@
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout-v31/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout/activity_main.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout/activity_send_otpactivity.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout/activity_verify_otpactivity.xml" value="0.24909420289855072" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout/login_tab_fragment.xml" value="0.24909420289855072" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/Project_Login/app/src/main/res/layout/signup_tab_fragment.xml" value="0.4" />
       </map>
