@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,9 +44,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
         inputCode5=findViewById(R.id.inputCode5);
         inputCode6=findViewById(R.id.inputCode6);
 
+
         setupOTPInputs();
 
-        final ProgressBar progressBar=findViewById(R.id.progressBar);
         final Button buttonVerify=findViewById(R.id.verifyOTP_BTN);
 
         verificationId=getIntent().getStringExtra("verificationId");
@@ -69,7 +70,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
                         inputCode6.getText().toString();
 
                 if(verificationId!=null){
-//                    progressBar.setVisibility(View.VISIBLE);
                     buttonVerify.setVisibility(View.INVISIBLE);
                     PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
                             verificationId,
@@ -79,7 +79,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-//                                    progressBar.setVisibility(View.GONE);
                                     buttonVerify.setVisibility(View.VISIBLE);
                                     if(task.isSuccessful()){
                                         Intent intent=new Intent(getApplicationContext(),MainActivity.class);
@@ -144,7 +143,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                inputCode2.requestFocus();
             }
         });
         inputCode2.addTextChangedListener(new TextWatcher() {
@@ -162,6 +161,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                inputCode3.requestFocus();
 
             }
         });
@@ -180,6 +180,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                inputCode4.requestFocus();
 
             }
         });
@@ -198,6 +199,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                inputCode5.requestFocus();
 
             }
         });
@@ -216,6 +218,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                inputCode6.requestFocus();
 
             }
         });
