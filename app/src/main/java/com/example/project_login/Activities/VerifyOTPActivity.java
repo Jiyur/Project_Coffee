@@ -60,7 +60,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
                 ||inputCode5.getText().toString().trim().isEmpty()
                 ||inputCode6.getText().toString().trim().isEmpty()){
                     Toast.makeText(VerifyOTPActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
-                    return;
                 }
                 String code=inputCode1.getText().toString()+
                         inputCode2.getText().toString()+
@@ -70,7 +69,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                         inputCode6.getText().toString();
 
                 if(verificationId!=null){
-                    progressBar.setVisibility(View.VISIBLE);
+//                    progressBar.setVisibility(View.VISIBLE);
                     buttonVerify.setVisibility(View.INVISIBLE);
                     PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
                             verificationId,
@@ -80,13 +79,13 @@ public class VerifyOTPActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
+//                                    progressBar.setVisibility(View.GONE);
                                     buttonVerify.setVisibility(View.VISIBLE);
                                     if(task.isSuccessful()){
-                                        Toast.makeText(VerifyOTPActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-//                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                        startActivity(intent);
+                                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finishAffinity();
                                     }
                                     else{
                                         Toast.makeText(VerifyOTPActivity.this, "Invalid OTP code", Toast.LENGTH_SHORT).show();
@@ -103,7 +102,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 PhoneAuthOptions options=PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                         .setPhoneNumber("+84"+getIntent().getStringExtra("mobile"))
-                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setTimeout(120L, TimeUnit.SECONDS)
                         .setActivity(VerifyOTPActivity.this)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override

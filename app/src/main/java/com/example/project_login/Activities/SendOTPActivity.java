@@ -61,24 +61,27 @@ public class SendOTPActivity extends AppCompatActivity {
                                 buttonGetOTP.setVisibility(View.VISIBLE);
                                 Toast.makeText(SendOTPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
+
                             @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                super.onCodeSent(s, forceResendingToken);
                                 progressBar.setVisibility(View.GONE);
                                 buttonGetOTP.setVisibility(View.VISIBLE);
                                 Intent intent=new Intent(getApplicationContext(),VerifyOTPActivity.class);
                                 intent.putExtra("mobile",inputMobile.getText().toString());
-                                intent.putExtra("verificationId",verificationId);
+                                intent.putExtra("verificationId",s);
                                 startActivity(intent);
                             }
+
                         })
                         .build();
 
                 PhoneAuthProvider.verifyPhoneNumber(options);
 
                 //Test
-                Intent intent=new Intent(getApplicationContext(),VerifyOTPActivity.class);
-                intent.putExtra("mobile",inputMobile.getText().toString());
-                startActivity(intent);
+//                Intent intent=new Intent(getApplicationContext(),VerifyOTPActivity.class);
+//                intent.putExtra("mobile",inputMobile.getText().toString());
+//                startActivity(intent);
             }
         });
     }
