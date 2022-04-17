@@ -1,15 +1,13 @@
-package com.example.project_login;
+package com.example.project_login.Activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.project_login.Adapter.LoginAdapter;
+import com.example.project_login.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Login">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing"
             />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

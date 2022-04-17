@@ -1,4 +1,4 @@
-package com.example.project_login;
+package com.example.project_login.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.project_login.R;
 
 public class SignupTabFragment extends Fragment {
     EditText password,user_name,phone;
