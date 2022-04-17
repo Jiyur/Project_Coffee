@@ -76,7 +76,7 @@ public class SendOTPActivity extends AppCompatActivity {
 
                 PhoneAuthProvider.verifyPhoneNumber(options);
 
-
+                //Test
                 Intent intent=new Intent(getApplicationContext(),VerifyOTPActivity.class);
                 intent.putExtra("mobile",inputMobile.getText().toString());
                 startActivity(intent);
