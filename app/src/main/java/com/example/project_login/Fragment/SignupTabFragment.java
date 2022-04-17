@@ -1,5 +1,6 @@
 package com.example.project_login.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.project_login.Activities.SendOTPActivity;
 import com.example.project_login.R;
 
 public class SignupTabFragment extends Fragment {
@@ -39,6 +41,19 @@ public class SignupTabFragment extends Fragment {
         phone.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
         signup.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
 
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if(!phone.getText().toString().trim().isEmpty()
+               ||!password.getText().toString().trim().isEmpty()
+               ||!user_name.getText().toString().trim().isEmpty()){
+
+               }
+
+
+
+            }
+        });
 
 
         return root;

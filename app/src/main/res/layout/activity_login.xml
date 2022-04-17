@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/food_banner"
+        android:src="@drawable/coffee_bg"
         app:layout_constraintHeight_percent=".27"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +50,9 @@
         </androidx.viewpager2.widget.ViewPager2>
 
         <com.google.android.material.tabs.TabLayout
-            android:background="#eef1f8"
-            app:tabSelectedTextColor="@color/black"
-            app:tabIndicatorColor="@color/black"
+            android:background="#efe4d4"
+            app:tabSelectedTextColor="#151618"
+            app:tabIndicatorColor="#151618"
             android:id="@+id/tab_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,57 +66,7 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab_facebook"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            app:layout_constraintVertical_bias=".8"-->
-<!--            android:elevation="35dp"-->
-<!--            android:src="@drawable/facebook_icon"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/fab_google"-->
-<!--            app:layout_constraintHorizontal_bias="1"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/view_pager"-->
-<!--            app:tint="@null">-->
 
-<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
-
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab_google"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:elevation="35dp"-->
-<!--            android:src="@drawable/google_icon"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/view_pager"-->
-<!--            app:layout_constraintVertical_bias=".8"-->
-<!--            app:tint="@null">-->
-
-<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
-
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/fab_twitter"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:elevation="35dp"-->
-<!--            android:src="@drawable/twitter"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/fab_google"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/view_pager"-->
-<!--            app:layout_constraintVertical_bias=".8"-->
-<!--            app:tint="@null">-->
-
-<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
