@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
     Button HomePage;
     @Override
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        DatabaseReference myDatabase= FirebaseDatabase
+                .getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("Node");
 
     }
 }

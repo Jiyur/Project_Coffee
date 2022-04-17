@@ -16,7 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class LoginActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    FloatingActionButton fb,twitter,google;
+//    FloatingActionButton fb,twitter,google;
     float v=0;
 
     @Override
@@ -29,9 +29,9 @@ public class LoginActivity extends AppCompatActivity {
         //Binding View
         tabLayout=findViewById(R.id.tab_layout);
         viewPager=findViewById(R.id.view_pager);
-        fb=findViewById(R.id.fab_facebook);
-        twitter=findViewById(R.id.fab_twitter);
-        google=findViewById(R.id.fab_google);
+//        fb=findViewById(R.id.fab_facebook);
+//        twitter=findViewById(R.id.fab_twitter);
+//        google=findViewById(R.id.fab_google);
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -49,22 +49,22 @@ public class LoginActivity extends AppCompatActivity {
         }).attach();
 
         //Translation
-        fb.setTranslationY(300);
-        twitter.setTranslationY(300);
-        google.setTranslationY(300);
+//        fb.setTranslationY(300);
+//        twitter.setTranslationY(300);
+//        google.setTranslationY(300);
         tabLayout.setTranslationY(300);
 
         //Set oriental to 0
-        fb.setAlpha(v);
-        twitter.setAlpha(v);
-        google.setAlpha(v);
+//        fb.setAlpha(v);
+//        twitter.setAlpha(v);
+//        google.setAlpha(v);
         tabLayout.setTranslationY(v);
 
         //Set animation for view
-        fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-        google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
-        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
+//        fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+//        google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+//        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
+        tabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
 
     }
 }

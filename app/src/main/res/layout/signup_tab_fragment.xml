@@ -6,15 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
-        android:id="@+id/phone"
+        android:drawablePadding="10dp"
+        android:id="@+id/name"
         android:layout_width="0dp"
+        android:drawableLeft="@drawable/ic_baseline_account_box_24"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="@drawable/edit_text_bg"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/otk"
-        android:hint="Phone number"
-        android:paddingStart="20dp"
+        android:hint="Fullname"
+        android:paddingStart="15dp"
         android:padding="15dp"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,47 +30,52 @@
     </EditText>
 
     <EditText
-        android:id="@+id/pass"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:id="@+id/phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/otk"
+        android:hint="Phone number"
+        android:padding="15dp"
+        android:paddingStart="15dp"
+        android:paddingBottom="10dp"
+        android:textSize="16dp"
+        app:flow_horizontalBias=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".8">
+
+    </EditText>
+
+    <EditText
+        android:inputType="textPassword"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/otk"
         android:textSize="16dp"
-        android:hint="Password"
-        android:paddingStart="20dp"
+        android:paddingStart="15dp"
         android:padding="15dp"
         android:background="@drawable/edit_text_bg"
-        android:paddingBottom="10dp"
-        app:layout_constraintVertical_bias="0"
         android:layout_marginTop="20dp"
-        app:flow_horizontalBias=".5"
-        app:layout_constraintWidth_percent=".8"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone"
-        >
-    </EditText>
-
-    <EditText
-        android:id="@+id/confirm_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/otk"
-        android:textSize="16dp"
-        android:paddingStart="20dp"
-        android:padding="15dp"
-        android:background="@drawable/edit_text_bg"
-        android:layout_marginTop="20dp"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass"
         app:layout_constraintWidth_percent=".8">
 
     </EditText>
@@ -78,7 +85,7 @@
         android:id="@+id/signUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient"
+        android:background="@drawable/button_bg"
         android:padding="14dp"
         android:text="Đăng ký"
         android:textColor="@color/white"
@@ -88,7 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.745"
         app:layout_constraintWidth_percent=".8" />
 
