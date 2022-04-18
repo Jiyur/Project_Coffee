@@ -71,6 +71,7 @@ public class LoginTabFragment  extends Fragment {
                                     if(snapshot.child(phoneStr).child("isVerified").getValue(String.class).trim().equals("No")){
                                         Intent intent=new Intent(getActivity(), SendOTPActivity.class);
                                         intent.putExtra("mobile_phone",phoneStr.substring(1));
+                                        intent.putExtra("action","login");
                                         startActivity(intent);
                                     }
                                     else{
