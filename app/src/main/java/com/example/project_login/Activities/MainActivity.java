@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.project_login.Activities.LoginSignup.LoginActivity;
 import com.example.project_login.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN=3000;
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         banner.setAnimation(topAnim);
         logo.setAnimation(botAnim);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
