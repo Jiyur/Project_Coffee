@@ -1,4 +1,4 @@
-package com.example.project_login.Activities;
+package com.example.project_login.Activities.LoginSignup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,14 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project_login.Activities.HomePageActivity;
 import com.example.project_login.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -85,12 +84,19 @@ public class VerifyOTPActivity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         //Xác nhận người dùng đã xác thực tài khoản
                                         DatabaseReference myDatabase= FirebaseDatabase.getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("users");
-                                        myDatabase.child("0"+textMobile.getText().toString().substring(4).trim()).child("isVerified").setValue("Yes");
-                                        //Chuyển vào homepage
-                                        Intent intent=new Intent(getApplicationContext(),HomePageActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
-                                        finishAffinity();
+                                        if(!getIntent().getStringExtra("action").equals("reset")){
+                                            myDatabase.child("0"+textMobile.getText().toString().substring(4).trim()).child("isVerified").setValue("Yes");
+                                            //Chuyển vào homepage
+                                            Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                        }
+                                        else{
+                                            Intent intent=new Intent(getApplicationContext(),SetNewPassword.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            intent.putExtra("mobile_phone","0"+textMobile.getText().toString().substring(4).trim());
+                                            startActivity(intent);
+                                        }
                                     }
                                     else{
                                         Toast.makeText(VerifyOTPActivity.this, "Invalid OTP code", Toast.LENGTH_SHORT).show();

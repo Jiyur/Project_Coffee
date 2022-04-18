@@ -1,6 +1,5 @@
 package com.example.project_login.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.project_login.Activities.SendOTPActivity;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;

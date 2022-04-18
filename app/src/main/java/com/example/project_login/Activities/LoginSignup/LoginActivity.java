@@ -1,4 +1,4 @@
-package com.example.project_login.Activities;
+package com.example.project_login.Activities.LoginSignup;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

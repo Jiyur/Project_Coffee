@@ -10,16 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Login">
         <activity
+            android:name=".Activities.LoginSignup.PasswordResetMessage"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LoginSignup.SetNewPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LoginSignup.ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.HomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.VerifyOTPActivity"
+            android:name=".Activities.LoginSignup.VerifyOTPActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.SendOTPActivity"
-            android:exported="false"></activity>
+            android:name=".Activities.LoginSignup.SendOTPActivity"
+            android:exported="false" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".Activities.LoginSignup.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing" />
         <activity

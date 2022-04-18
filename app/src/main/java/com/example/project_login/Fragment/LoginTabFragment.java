@@ -15,7 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.project_login.Activities.HomePageActivity;
-import com.example.project_login.Activities.SendOTPActivity;
+import com.example.project_login.Activities.LoginSignup.ForgetPasswordActivity;
+import com.example.project_login.Activities.LoginSignup.SendOTPActivity;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -92,6 +93,13 @@ public class LoginTabFragment  extends Fragment {
                         }
                     });
                 }
+            }
+        });
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), ForgetPasswordActivity.class);
+                startActivity(intent);
             }
         });
         return root;

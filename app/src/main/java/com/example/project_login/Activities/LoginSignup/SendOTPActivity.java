@@ -1,4 +1,4 @@
-package com.example.project_login.Activities;
+package com.example.project_login.Activities.LoginSignup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +33,7 @@ public class SendOTPActivity extends AppCompatActivity {
         final ProgressBar progressBar=findViewById(R.id.progressBar);
 
         inputMobile.setText(getIntent().getStringExtra("mobile_phone"));
+        String action=getIntent().getStringExtra("action").trim();
         mAuth=FirebaseAuth.getInstance();
         buttonGetOTP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +72,7 @@ public class SendOTPActivity extends AppCompatActivity {
                                 Intent intent=new Intent(getApplicationContext(),VerifyOTPActivity.class);
                                 intent.putExtra("mobile",inputMobile.getText().toString());
                                 intent.putExtra("verificationId",s);
+                                intent.putExtra("action",action);
                                 startActivity(intent);
                             }
 

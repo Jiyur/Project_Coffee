@@ -12,4 +12,17 @@
     <string name="_86">+86-</string>
     <string name="_84">+84-</string>
     <string name="join_us_today">Join us today</string>
+    <string name="forget_password">Forget password</string>
+    <string name="forget_password_detail">Enter your phone number here to retrive password</string>
+    <string name="enter_phone">Enter phone</string>
+    <string name="next_BTN">Next</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="new_credential">New Credential</string>
+    <string name="please_set_your_new_password_here">Please set your new password here</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="OK">OK</string>
+    <string name="password_updated">Password Updated</string>
+    <string name="your_password_has_been_updated">Your password has been updated</string>
+    <string name="login">Login</string>
 </resources>
