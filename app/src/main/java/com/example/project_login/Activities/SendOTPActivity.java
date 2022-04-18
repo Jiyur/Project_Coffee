@@ -32,6 +32,7 @@ public class SendOTPActivity extends AppCompatActivity {
         final Button buttonGetOTP=findViewById(R.id.getOTP_BTN);
         final ProgressBar progressBar=findViewById(R.id.progressBar);
 
+        inputMobile.setText(getIntent().getStringExtra("mobile_phone"));
         mAuth=FirebaseAuth.getInstance();
         buttonGetOTP.setOnClickListener(new View.OnClickListener() {
             @Override

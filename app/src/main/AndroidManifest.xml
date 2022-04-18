@@ -10,20 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Login">
         <activity
+            android:name=".Activities.HomePageActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.VerifyOTPActivity"
             android:exported="false" />
-
         <activity
             android:name=".Activities.SendOTPActivity"
-            android:exported="false" >
-
-        </activity>
-
+            android:exported="false"></activity>
         <activity
             android:name=".Activities.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustNothing" />
-
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">
