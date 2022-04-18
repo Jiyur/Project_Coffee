@@ -72,7 +72,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
                 if(verificationId!=null){
                     buttonVerify.setVisibility(View.INVISIBLE);
-                    PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
+                    PhoneAuthCredential phoneAuthCredential=PhoneAuthProvider.getCredential(
                             verificationId,
                             code
                     );

@@ -36,6 +36,7 @@
         android:backgroundTint="@color/white"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:inputType="textPassword"
         android:letterSpacing="0.03"
         android:textSize="16sp"
         android:fontFamily="@font/otk"

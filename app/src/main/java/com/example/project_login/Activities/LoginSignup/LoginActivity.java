@@ -27,9 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         //Binding View
         tabLayout=findViewById(R.id.tab_layout);
         viewPager=findViewById(R.id.view_pager);
-//        fb=findViewById(R.id.fab_facebook);
-//        twitter=findViewById(R.id.fab_twitter);
-//        google=findViewById(R.id.fab_google);
+//
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
