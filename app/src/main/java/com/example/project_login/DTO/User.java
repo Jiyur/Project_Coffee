@@ -8,12 +8,33 @@ public class User implements Serializable {
     private String password;
     private String role;
     private String isVerified;
+    private String gender;
+    private String birth;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
     public User(){}
     public User(String fullName, String phone, String password, String role) {
         this.fullName = fullName;
         this.phone = phone;
         this.password = password;
         this.role = role;
+        this.gender="";
+        this.birth="";
         this.isVerified="No";
     }
     public String getFullName() {
