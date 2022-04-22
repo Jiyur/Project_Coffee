@@ -76,6 +76,7 @@ public class LoginTabFragment  extends Fragment {
                                     }
                                     else{
                                         Intent intent=new Intent(getActivity(), HomePageActivity.class);
+                                        intent.putExtra("mobile_phone",phoneStr.trim());
                                         startActivity(intent);
                                     }
 //

@@ -89,6 +89,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                                             //Chuyển vào homepage
                                             Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            intent.putExtra("mobile_phone","0"+textMobile.getText().toString().substring(4).trim());
                                             startActivity(intent);
                                         }
                                         else{
