@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +21,7 @@ public class SetNewPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DatabaseReference myDatabase= UserDAO.getMyDatabase();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         super.onCreate(savedInstanceState);
@@ -32,15 +34,12 @@ public class SetNewPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(new_password.getText().toString().equals(confirm_password.getText().toString())){
-                    DatabaseReference myDatabase= FirebaseDatabase
-                            .getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                            .getReference("users");
                     String password=new_password.getText().toString().trim();
                     myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.hasChild(phoneStr)){
-                                myDatabase.child(phoneStr).child("password").setValue(password);
+                                UserDAO.newPassword(phoneStr,password);
                                 Intent intent=new Intent(SetNewPassword.this,PasswordResetMessage.class);
                                 startActivity(intent);
                                 finish();

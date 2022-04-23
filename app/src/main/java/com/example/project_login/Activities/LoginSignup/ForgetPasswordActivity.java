@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +21,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DatabaseReference myDatabase= UserDAO.getMyDatabase();
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         super.onCreate(savedInstanceState);
@@ -29,9 +31,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         nextBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference myDatabase= FirebaseDatabase
-                        .getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                        .getReference("users");
+
                 String phoneStr=phoneForget.getText().toString().trim();
                 myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

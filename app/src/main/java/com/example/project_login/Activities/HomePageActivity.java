@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,9 +32,7 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         sharedPreferences=getSharedPreferences("UserInfo",Context.MODE_PRIVATE);
         String getPhone=getIntent().getStringExtra("mobile_phone");
-        DatabaseReference myDatabase= FirebaseDatabase
-                .getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("users");
+        DatabaseReference myDatabase= UserDAO.getMyDatabase();
         myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -51,6 +50,14 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        final com.google.android.material.card.MaterialCardView materialCardView=findViewById(R.id.coffee_module);
+        materialCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomePageActivity.this, "Phone: "+sharedPreferences.getString("user_phone","")
+                        +" Role: "+sharedPreferences.getString("user_role",""), Toast.LENGTH_SHORT).show();
             }
         });
 

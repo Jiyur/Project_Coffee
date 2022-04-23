@@ -35,7 +35,6 @@
             android:orientation="horizontal"
             android:gravity="center">
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/coffee_module"
 
                 android:layout_width="0dp"
                 android:layout_height="100dp"
@@ -217,6 +216,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/coffee_module"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"

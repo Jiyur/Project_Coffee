@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_login.Activities.HomePageActivity;
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +34,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
     private String verificationId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DatabaseReference myDatabase= UserDAO.getMyDatabase();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_otpactivity);
 
@@ -44,7 +46,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
         inputCode4=findViewById(R.id.inputCode4);
         inputCode5=findViewById(R.id.inputCode5);
         inputCode6=findViewById(R.id.inputCode6);
-
 
         setupOTPInputs();
 
@@ -83,7 +84,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
                                     buttonVerify.setVisibility(View.VISIBLE);
                                     if(task.isSuccessful()){
                                         //Xác nhận người dùng đã xác thực tài khoản
-                                        DatabaseReference myDatabase= FirebaseDatabase.getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("users");
                                         if(!getIntent().getStringExtra("action").equals("reset")){
                                             myDatabase.child("0"+textMobile.getText().toString().substring(4).trim()).child("isVerified").setValue("Yes");
                                             //Chuyển vào homepage

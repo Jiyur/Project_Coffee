@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +46,7 @@ public class SignupTabFragment extends Fragment {
         password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         phone.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
         signup.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
-        DatabaseReference myDatabase= FirebaseDatabase.getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
+        DatabaseReference myDatabase= UserDAO.getMyDatabase();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +65,7 @@ public class SignupTabFragment extends Fragment {
                             }
                             else{
                                 User user=new User(fullName,phoneStr,passwordStr,"staff");
-                                myDatabase.child(phoneStr).setValue(user);
+                                UserDAO.insert(phoneStr,user);
                                 Toast.makeText(getContext(),"Register Successful",Toast.LENGTH_SHORT).show();
 
                             }

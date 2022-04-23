@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.project_login.Activities.HomePageActivity;
 import com.example.project_login.Activities.LoginSignup.ForgetPasswordActivity;
 import com.example.project_login.Activities.LoginSignup.SendOTPActivity;
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +32,7 @@ public class LoginTabFragment  extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState)
     {
-        DatabaseReference myDatabase= FirebaseDatabase.getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users");
+        DatabaseReference myDatabase= UserDAO.getMyDatabase();
         ViewGroup root=(ViewGroup) inflater.inflate(R.layout.login_tab_fragment,container,false);
 
         phone=root.findViewById(R.id.phone);
