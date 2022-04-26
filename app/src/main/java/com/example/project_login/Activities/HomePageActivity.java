@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +27,8 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+       // ActionBar actionBar = getSupportActionBar();
+       // actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         sharedPreferences=getSharedPreferences("UserInfo",Context.MODE_PRIVATE);
@@ -61,6 +62,14 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
+        final com.google.android.material.card.MaterialCardView mapMaterialCardView = findViewById(R.id.mapItem);
+        mapMaterialCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, management_staff.class);
+                startActivity(intent );
+            }
+        });
     }
 
 }

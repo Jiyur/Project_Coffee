@@ -22,8 +22,8 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         DatabaseReference myDatabase= UserDAO.getMyDatabase();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+       // ActionBar actionBar = getSupportActionBar();
+       // actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         final android.widget.Button nextBTN=findViewById(R.id.forget_nextBTN);

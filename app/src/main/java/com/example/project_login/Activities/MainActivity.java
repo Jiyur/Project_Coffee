@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        //ActionBar actionBar = getSupportActionBar();
+       //actionBar.hide();
         setContentView(R.layout.activity_main);
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animate);
         botAnim=AnimationUtils.loadAnimation(this,R.anim.bot_animate);

@@ -22,8 +22,8 @@ public class SetNewPassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         DatabaseReference myDatabase= UserDAO.getMyDatabase();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+       // ActionBar actionBar = getSupportActionBar();
+       // actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_new_password);
         final com.google.android.material.textfield.TextInputEditText new_password=findViewById(R.id.new_password);

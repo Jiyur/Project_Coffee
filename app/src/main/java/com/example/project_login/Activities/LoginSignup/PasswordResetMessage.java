@@ -13,8 +13,8 @@ public class PasswordResetMessage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+       // ActionBar actionBar = getSupportActionBar();
+       // actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgetpassword_message);
         final android.widget.Button login_BTN=findViewById(R.id.reset_login_BTN);
