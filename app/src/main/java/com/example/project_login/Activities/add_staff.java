@@ -3,10 +3,12 @@ package com.example.project_login.Activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -32,6 +34,7 @@ public class add_staff extends AppCompatActivity {
     EditText fullname_txt, phone_txt, pass_txt;
     Button add_btn, choose_btn;
     RadioButton male_radioBtn, female_radioBtn, staff_radioBtn, manager_radioBtn;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,6 @@ public class add_staff extends AppCompatActivity {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        back = findViewById(R.id.icon_back);
         add_btn = findViewById(R.id.add_btn);
         choose_btn = findViewById(R.id.chooseDate_btn);
         male_radioBtn = findViewById(R.id.male_radioBtn);
@@ -54,8 +56,11 @@ public class add_staff extends AppCompatActivity {
         phone_txt = findViewById(R.id.phone_txt);
         pass_txt = findViewById(R.id.pass_txt);
         birth_txt = findViewById(R.id.birth_txt);
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        toolbar = findViewById(R.id.listStaff_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void chooseOnclick(View view) {
@@ -109,9 +114,16 @@ public class add_staff extends AppCompatActivity {
         });
     }
 
-    public void backOnclick(View view) {
-        Intent intent = new Intent(add_staff.this, management_staff.class);
-        startActivity(intent);
-        finish();
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

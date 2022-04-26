@@ -4,38 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.edit_staff"
-    android:background="@color/brown_800">
-    <TextView
-        android:onClick="backOnclick"
-        android:id="@+id/icon_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022"
-        android:textColor="@color/white"/>
+    tools:context=".Activities.edit_staff">
 
-    <TextView
-        android:id="@+id/title_txt"
-        android:layout_width="267dp"
-        android:layout_height="51dp"
-        android:gravity="center"
-        android:text="Update info"
-        android:textColor="@android:color/black"
-        android:textSize="30dp"
-        android:textStyle="bold"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/listStaff_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
+        app:title="Edit staff"/>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -91,11 +75,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginBottom="256dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title_txt"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.268">
 
         <EditText
@@ -108,20 +94,19 @@
             android:background="@drawable/botron_edittext"
             android:drawableLeft="@drawable/ic_baseline_edit_24"
             android:drawablePadding="20dp"
-            android:hint="Full name"
-            />
+            android:hint="Full name" />
 
         <EditText
             android:id="@+id/phone_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:inputType="phone"
             android:layout_marginBottom="20dp"
             android:background="@drawable/botron_edittext"
             android:drawableLeft="@drawable/ic_baseline_local_phone_24"
             android:drawablePadding="20dp"
-            android:hint="Phone" />
+            android:hint="Phone"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/pass_txt"
@@ -137,8 +122,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/birth_txt"
@@ -147,8 +132,8 @@
                 android:background="@drawable/botron_edittext"
                 android:drawableLeft="@drawable/ic_baseline_cake_24"
                 android:drawablePadding="20dp"
-                android:hint="Birthday"
                 android:gravity="center_vertical"
+                android:hint="Birthday"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.011"
@@ -156,10 +141,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:onClick="chooseOnclick"
                 android:id="@+id/chooseDate_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="chooseOnclick"
                 android:text="Choose"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

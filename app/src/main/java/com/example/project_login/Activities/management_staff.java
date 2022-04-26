@@ -49,6 +49,7 @@ public class management_staff extends AppCompatActivity {
 
         toolbar = findViewById(R.id.listStaff_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = findViewById(R.id.list_staff);
         add_btn = findViewById(R.id.add_btn);
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -175,5 +176,18 @@ public class management_staff extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

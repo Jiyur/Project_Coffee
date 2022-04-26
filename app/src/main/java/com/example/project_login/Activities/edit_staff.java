@@ -3,10 +3,12 @@ package com.example.project_login.Activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -35,6 +37,7 @@ public class edit_staff extends AppCompatActivity {
     EditText fullname_txt, phone_txt, pass_txt ;
     RadioButton male_radioBtn, female_radioBtn, staff_radioBtn, manager_radioBtn;
     Button save_btn, chooseDate_btn;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,7 @@ public class edit_staff extends AppCompatActivity {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("user");
-        back_txt = findViewById(R.id.icon_back);
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
         save_btn = findViewById(R.id.save_btn);
         chooseDate_btn = findViewById(R.id.chooseDate_btn);
         male_radioBtn = findViewById(R.id.male_radioBtn);
@@ -58,18 +60,15 @@ public class edit_staff extends AppCompatActivity {
         phone_txt = findViewById(R.id.phone_txt);
         pass_txt = findViewById(R.id.pass_txt);
         birth_txt = findViewById(R.id.birth_txt);
-        //birth_datePicker = findViewById(R.id.birth_datePicker);
 
         Bundle bundle = getIntent().getExtras();
         user = (User) bundle.getParcelable("User");
 
-        getData(user);
-    }
+        toolbar = findViewById(R.id.listStaff_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    public void backOnclick(View view) {
-        Intent intent = new Intent(edit_staff.this, management_staff.class);
-        startActivity(intent);
-        finish();
+        getData(user);
     }
 
     public void chooseOnclick(View view) {
@@ -143,5 +142,18 @@ public class edit_staff extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
