@@ -157,8 +157,8 @@ public class management_staff extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                DatabaseReference database = FirebaseDatabase.getInstance().getReference("users/"+user.getPhone());
-                database.removeValue(new DatabaseReference.CompletionListener() {
+                DatabaseReference database = UserDAO.getMyDatabase();
+                database.child(user.getPhone()).removeValue(new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                         if(error == null){
