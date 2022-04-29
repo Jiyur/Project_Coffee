@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.project_login.Adapter.listStaffAdapter;
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.firebase.database.ChildEventListener;
@@ -52,7 +53,7 @@ public class management_staff extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = findViewById(R.id.list_staff);
         add_btn = findViewById(R.id.add_btn);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = UserDAO.getMyDatabase();
 
         showListData();
     }
@@ -64,7 +65,7 @@ public class management_staff extends AppCompatActivity {
 
     public void showListData(){
         listnv = new ArrayList<User>();
-        mDatabase.child("users").addChildEventListener(new ChildEventListener() {
+        mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 User user = snapshot.getValue(User.class);

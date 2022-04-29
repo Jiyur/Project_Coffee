@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.firebase.database.DatabaseError;
@@ -56,7 +57,7 @@ public class add_staff extends AppCompatActivity {
         phone_txt = findViewById(R.id.phone_txt);
         pass_txt = findViewById(R.id.pass_txt);
         birth_txt = findViewById(R.id.birth_txt);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = UserDAO.getMyDatabase();
 
         toolbar = findViewById(R.id.listStaff_toolbar);
         setSupportActionBar(toolbar);
@@ -102,7 +103,7 @@ public class add_staff extends AppCompatActivity {
         }
 
         User user = new User(fullName, phone, pass, role, gender, birth);
-        mDatabase.child("users").child(user.getPhone()).setValue(user, new DatabaseReference.CompletionListener() {
+        mDatabase.child(user.getPhone()).setValue(user, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error == null){

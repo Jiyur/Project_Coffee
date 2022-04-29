@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.firebase.database.DatabaseError;
@@ -49,7 +50,7 @@ public class edit_staff extends AppCompatActivity {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        mDatabase = UserDAO.getMyDatabase();
         save_btn = findViewById(R.id.save_btn);
         chooseDate_btn = findViewById(R.id.chooseDate_btn);
         male_radioBtn = findViewById(R.id.male_radioBtn);
