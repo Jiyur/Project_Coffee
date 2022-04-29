@@ -88,6 +88,9 @@ public class LoginTabFragment  extends Fragment {
                                 }
 
                             }
+                            else{
+                                Toast.makeText(getContext(),"This account doesn't exist !",Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
