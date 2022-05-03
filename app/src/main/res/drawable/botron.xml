@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#FFFFFF"/>
+    <solid
+        android:color="@color/background_color" >
+    </solid>
 
     <!-- đặt thuộc tính màu và độ rộng của đường viền -->
     <stroke

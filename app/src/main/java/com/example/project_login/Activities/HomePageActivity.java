@@ -53,12 +53,12 @@ public class HomePageActivity extends AppCompatActivity {
 
             }
         });
-        final com.google.android.material.card.MaterialCardView materialCardView=findViewById(R.id.coffee_module);
+        final com.google.android.material.card.MaterialCardView materialCardView=findViewById(R.id.profie_item);
         materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(HomePageActivity.this, "Phone: "+sharedPreferences.getString("user_phone","")
-                        +" Role: "+sharedPreferences.getString("user_role",""), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomePageActivity.this, staff_profile.class);
+                startActivity(intent );
             }
         });
 

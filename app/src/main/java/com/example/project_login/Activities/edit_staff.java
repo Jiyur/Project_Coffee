@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,12 +34,10 @@ public class edit_staff extends AppCompatActivity {
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
-
-    TextView back_txt, birth_txt;
-    EditText fullname_txt, phone_txt, pass_txt ;
-    RadioButton male_radioBtn, female_radioBtn, staff_radioBtn, manager_radioBtn;
-    Button save_btn, chooseDate_btn;
-    Toolbar toolbar;
+    private TextInputEditText fullname_txt, phone_txt, pass_txt, birth_txt;
+    private TextView name;
+    private RadioButton male_radioBtn, female_radioBtn, staff_radioBtn, manager_radioBtn;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +50,15 @@ public class edit_staff extends AppCompatActivity {
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
         mDatabase = UserDAO.getMyDatabase();
-        save_btn = findViewById(R.id.save_btn);
-        chooseDate_btn = findViewById(R.id.chooseDate_btn);
         male_radioBtn = findViewById(R.id.male_radioBtn);
         female_radioBtn = findViewById(R.id.female_radioBtn);
         staff_radioBtn = findViewById(R.id.staff_radioBtn);
         manager_radioBtn = findViewById(R.id.manager_radioBtn);
-        fullname_txt = findViewById(R.id.fullname_txt);
-        phone_txt = findViewById(R.id.phone_txt);
-        pass_txt = findViewById(R.id.pass_txt);
-        birth_txt = findViewById(R.id.birth_txt);
+        name = findViewById(R.id.name_textview);
+        fullname_txt = findViewById(R.id.textInputEditText_full_name);
+        phone_txt = findViewById(R.id.textInputEditText_phone);
+        pass_txt = findViewById(R.id.textInputEditText_pass);
+        birth_txt = findViewById(R.id.textInputEditText_birth);
 
         Bundle bundle = getIntent().getExtras();
         user = (User) bundle.getParcelable("User");
@@ -112,6 +110,7 @@ public class edit_staff extends AppCompatActivity {
         fullname_txt.setText(user.getFullName());
         phone_txt.setText(user.getPhone());
         pass_txt.setText(user.getPassword());
+        name.setText(user.getFullName());
         if(user.getGender().equals("male")){
             male_radioBtn.setChecked(true);
         }else {
@@ -122,7 +121,7 @@ public class edit_staff extends AppCompatActivity {
         } else{
             staff_radioBtn.setChecked(true);
         }
-        birth_txt.setText(user.getBirth().replace('/', '-'));
+        birth_txt.setText(user.getBirth());
     }
 
     private void upDateUser(User user) {

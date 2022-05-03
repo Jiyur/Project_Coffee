@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@drawable/botron_edittext">
+    android:background="@drawable/botron">
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/download"
+        android:src="@drawable/glass_coffe"
         app:civ_border_width="1dp"
         app:civ_border_color="#FF000000"/>
 

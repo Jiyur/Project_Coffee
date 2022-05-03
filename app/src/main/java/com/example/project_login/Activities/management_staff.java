@@ -6,11 +6,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -42,7 +47,7 @@ public class management_staff extends AppCompatActivity {
     List<User> listnv;
     listStaffAdapter adapter;
     Button add_btn;
-
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,15 +142,18 @@ public class management_staff extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int pos = info.position;
-        User nv = (User) adapter.getItem(pos);
+        user = (User) adapter.getItem(pos);
         switch (item.getItemId()){
             case R.id.delete_item:
-                createDialogDelete(nv);
+                createDialogDelete(user);
                 break;
             case R.id.edit_item:
                 Intent intent = new Intent(management_staff.this, edit_staff.class);
-                intent.putExtra("User", nv);
+                intent.putExtra("User", user);
                 startActivity(intent);
+                break;
+            case R.id.call_item:
+                ActivityCompat.requestPermissions(management_staff.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
                 break;
         }
         return super.onContextItemSelected(item);
@@ -190,5 +198,24 @@ public class management_staff extends AppCompatActivity {
             default:break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 1:{
+                if(grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    Uri number = Uri.parse("tel:"+user.getPhone());
+                    intent.setData(number);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(management_staff.this, "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
     }
 }
