@@ -149,7 +149,10 @@ public class edit_staff extends AppCompatActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
-                onBackPressed();
+                Intent intent=new Intent(edit_staff.this,management_staff.class);
+                startActivity(intent);
+                finish();
+//                onBackPressed();
                 return true;
 
             default:break;
