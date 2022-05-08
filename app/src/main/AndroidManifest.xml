@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Login">
         <activity
+            android:name=".Activities.DrinkActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.CategoryActivity"
             android:exported="false" />
         <activity
