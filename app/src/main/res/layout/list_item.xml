@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imgVw_Category_Item"
+        android:id="@+id/imgVw_CategoryItem"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
@@ -26,6 +26,6 @@
         android:text="TextView"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgVw_Category_Item"
+        app:layout_constraintStart_toEndOf="@+id/imgVw_CategoryItem"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
