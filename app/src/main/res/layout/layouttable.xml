@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewBan"
+        android:layout_width="117dp"
+        android:layout_height="98dp"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/tableicon"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_below="@+id/imageViewBan"
+        android:id="@+id/textViewBan"
+        android:layout_width="57dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Bàn"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_below="@+id/textViewBan"
+        android:id="@+id/textViewStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trạng thái"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+</RelativeLayout>
