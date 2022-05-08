@@ -1,9 +1,18 @@
 package com.example.project_login.DTO;
 
+import com.google.firebase.database.Exclude;
+
 public class Table {
+    @Exclude
+    public String id;
+
+    private String billID;
     private String nameTable;
     private String status;
-    private String billID;
+
+    public Table(){
+
+    }
 
     public Table(String nameTable, String status, String billID) {
         this.nameTable = nameTable;
@@ -19,8 +28,6 @@ public class Table {
         this.billID = billID;
     }
 
-    public Table() {
-    }
 
     public String getNameTable() {
         return nameTable;

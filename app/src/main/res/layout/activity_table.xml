@@ -36,12 +36,13 @@
             tools:layout_editor_absoluteY="74dp" />
 
     </LinearLayout>
-        <GridView
-            android:id="@+id/gvTable"
-            android:layout_width="412dp"
-            android:layout_height="567dp"
-            android:numColumns="2"
-            android:layout_below="@+id/linearButton"
-            android:verticalSpacing="20dp"/>
+
+    <GridView
+        android:id="@+id/gvTable"
+        android:layout_width="412dp"
+        android:layout_height="567dp"
+        android:layout_below="@+id/linearButton"
+        android:numColumns="2"
+        android:verticalSpacing="20dp" />
 
 </RelativeLayout>

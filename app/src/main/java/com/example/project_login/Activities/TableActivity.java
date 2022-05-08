@@ -3,7 +3,9 @@ package com.example.project_login.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -31,6 +33,7 @@ public class TableActivity extends AppCompatActivity {
     TextView tx;
     ArrayList<Table> tableList;
     TableAdapter adapter;
+    Context context;
     public static Table tableData = new Table();
 
     @Override
@@ -40,8 +43,6 @@ public class TableActivity extends AppCompatActivity {
         gvTable = (GridView) findViewById(R.id.gvTable);
         final TextView tx=findViewById(R.id.textView2);
         LoadData();
-//        adapter = new TableAdapter(this,R.layout.layouttable,tableList);
-//        gvTable.setAdapter(adapter);
 
     }
 
@@ -53,11 +54,28 @@ public class TableActivity extends AppCompatActivity {
         tableList.add(new Table("Ban 5","Free","none"));
     }
     private void LoadData() {
+//        FirebaseDatabase database= FirebaseDatabase.getInstance();
+//        DatabaseReference myRel = database.getReference("table");
         tableList = new ArrayList<>();
+
         DatabaseReference myDatabase = TableDAO.getMyDatabase();
-        myDatabase.setValue(new Table("1","2","3"));
+        myDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Table value =  dataSnapshot.getValue(Table.class);
+                    tableList.add(value);
+                }
+                //Log.d("3", tableList.get(1).);
+                adapter = new TableAdapter(TableActivity.this,R.layout.layouttable,tableList);
+                gvTable.setAdapter(adapter);
+            }
 
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("OK", "Fasle: " );
+            }
+        });
 
     }
 
