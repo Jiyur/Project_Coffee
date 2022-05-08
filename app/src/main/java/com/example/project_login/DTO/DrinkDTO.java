@@ -3,52 +3,52 @@ package com.example.project_login.DTO;
 import java.io.Serializable;
 
 public class DrinkDTO implements Serializable {
-    private String drinkId, drinkCategory, drinkImage;
-    private int drinkPrice;
+    private String id, category, image;
+    private int price;
 
     public DrinkDTO(String drinkId, String drinkImage, int drinkPrice) {
-        this.drinkId = drinkId;
-        this.drinkImage = drinkImage;
-        this.drinkPrice = drinkPrice;
-        drinkCategory = "other";
+        this.id = drinkId;
+        this.image = drinkImage;
+        this.price = drinkPrice;
+        category = "other";
     }
     public DrinkDTO(String drinkId, String drinkCategory
             , String drinkImage, int drinkPrice) {
-        this.drinkId = drinkId;
-        this.drinkCategory = drinkCategory;
-        this.drinkImage = drinkImage;
-        this.drinkPrice = drinkPrice;
+        this.id = drinkId;
+        this.category = drinkCategory;
+        this.image = drinkImage;
+        this.price = drinkPrice;
     }
 
     public String getDrinkId() {
-        return drinkId;
+        return id;
     }
 
     public String getDrinkImage() {
-        return drinkImage;
+        return image;
     }
 
     public int getDrinkPrice() {
-        return drinkPrice;
+        return price;
     }
 
     public String getDrinkCategory() {
-        return drinkCategory;
+        return category;
     }
 
     public void setDrinkId(String drinkId) {
-        this.drinkId = drinkId;
+        this.id = drinkId;
     }
 
     public void setDrinkCategory(String drinkCategory) {
-        this.drinkCategory = drinkCategory;
+        this.category = drinkCategory;
     }
 
     public void setDrinkImage(String drinkImage) {
-        this.drinkImage = drinkImage;
+        this.image = drinkImage;
     }
 
     public void setDrinkPrice(int drinkPrice) {
-        this.drinkPrice = drinkPrice;
+        this.price = drinkPrice;
     }
 }
