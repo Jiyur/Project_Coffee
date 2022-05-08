@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".table">
+    tools:context=".Activities.TableActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Danh Sách Bàn"
+        android:textAlignment="center"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:id="@+id/linearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/textView2">
+        <Button
+            android:id="@+id/buttonXoaBan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xóa bàn"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <Button
+            android:id="@+id/buttonThemBan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50sp"
+            android:text="Thêm bàn"
+            tools:layout_editor_absoluteY="74dp" />
+
+    </LinearLayout>
+        <GridView
+            android:id="@+id/gvTable"
+            android:layout_width="412dp"
+            android:layout_height="567dp"
+            android:numColumns="2"
+            android:layout_below="@+id/linearButton"
+            android:verticalSpacing="20dp"/>
+
+</RelativeLayout>
