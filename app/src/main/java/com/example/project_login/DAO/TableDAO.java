@@ -8,11 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.project_login.Activities.add_staff;
-import com.example.project_login.Activities.edit_staff;
-import com.example.project_login.Activities.table_management;
 import com.example.project_login.DTO.Table;
-import com.example.project_login.DTO.User;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

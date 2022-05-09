@@ -1,13 +1,11 @@
-package com.example.project_login.Activities;
+package com.example.project_login.Activities.Table;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,13 +25,11 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.project_login.Activities.HomePageActivity;
 import com.example.project_login.Adapter.TableAdapter;
 import com.example.project_login.DAO.TableDAO;
-import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.Table;
-import com.example.project_login.DTO.User;
 import com.example.project_login.R;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

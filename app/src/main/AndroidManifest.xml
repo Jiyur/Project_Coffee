@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Login">
         <activity
-            android:name=".Activities.table_management"
+            android:name=".Activities.Table.table_management"
             android:exported="false" />
         <activity
-            android:name=".Activities.staff_profile"
+            android:name=".Activities.StaffManagement.staff_profile"
             android:exported="false" />
         <activity
-            android:name=".Activities.edit_staff"
+            android:name=".Activities.StaffManagement.edit_staff"
             android:exported="false" />
         <activity
-            android:name=".Activities.management_staff"
+            android:name=".Activities.StaffManagement.management_staff"
             android:exported="false" />
         <activity
-            android:name=".Activities.add_staff"
+            android:name=".Activities.StaffManagement.add_staff"
             android:exported="false" />
         <activity
             android:name=".Activities.LoginSignup.PasswordResetMessage"

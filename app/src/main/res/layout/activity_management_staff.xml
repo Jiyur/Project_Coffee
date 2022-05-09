@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_list_staff"
-    tools:context=".Activities.management_staff">
+    tools:context=".Activities.StaffManagement.management_staff">
     <ListView
         android:id="@+id/list_staff"
         android:layout_width="match_parent"
