@@ -70,6 +70,15 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent );
             }
         });
+
+        final com.google.android.material.card.MaterialCardView tableMaterialCardView = findViewById(R.id.table_item);
+        tableMaterialCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, table_management.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
