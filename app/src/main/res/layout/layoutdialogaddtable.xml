@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFC107">
+
+    <TextView
+        android:id="@+id/textViewAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Thêm bàn"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:textColor="#FF5100"
+        android:textStyle="bold"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextNameTable"
+        android:layout_below="@+id/textViewAdd"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm"
+        android:id="@+id/buttonAdd"
+        android:layout_below="@+id/editTextNameTable"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"/>
+</RelativeLayout>

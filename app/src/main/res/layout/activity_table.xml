@@ -12,37 +12,32 @@
         android:layout_height="wrap_content"
         android:text="Danh Sách Bàn"
         android:textAlignment="center"
-        android:textSize="50sp" />
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="#FF9800"/>
 
-    <LinearLayout
-        android:id="@+id/linearButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_below="@+id/textView2">
-        <Button
-            android:id="@+id/buttonXoaBan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xóa bàn"
-            tools:layout_editor_absoluteY="74dp" />
-
-        <Button
-            android:id="@+id/buttonThemBan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50sp"
-            android:text="Thêm bàn"
-            tools:layout_editor_absoluteY="74dp" />
-
-    </LinearLayout>
 
     <GridView
         android:id="@+id/gvTable"
         android:layout_width="412dp"
-        android:layout_height="567dp"
-        android:layout_below="@+id/linearButton"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
         android:numColumns="2"
         android:verticalSpacing="20dp" />
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/plus"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </RelativeLayout>

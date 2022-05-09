@@ -3,13 +3,16 @@ package com.example.project_login.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.example.project_login.Adapter.TableAdapter;
 import com.example.project_login.DAO.TableDAO;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TableActivity extends AppCompatActivity {
-    Button buttonXoaBan, buttonThemBan;
+    ImageView imgviewThemBan;
     GridView gvTable;
     TextView tx;
     ArrayList<Table> tableList;
@@ -41,11 +45,24 @@ public class TableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
         gvTable = (GridView) findViewById(R.id.gvTable);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogThemBan();
+            }
+        });
         final TextView tx=findViewById(R.id.textView2);
         LoadData();
 
     }
 
+    private void DialogThemBan(){
+        Dialog dialog= new Dialog(this);
+        dialog.setContentView(R.layout.layoutdialogaddtable);
+        dialog.show();
+    }
     private void getDataTable(){
         tableList.add(new Table("Ban 1","Free","none"));
         tableList.add(new Table("Ban 2","Free","none"));
