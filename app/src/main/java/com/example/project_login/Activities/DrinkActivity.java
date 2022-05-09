@@ -1,12 +1,12 @@
 package com.example.project_login.Activities;
 
+import static com.example.project_login.Activities.CategoryActivity.CATEGORY;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_login.Adapter.DrinkAdapter;
-import com.example.project_login.DAO.CategoryDAO;
 import com.example.project_login.DAO.DrinkDAO;
-import com.example.project_login.DTO.CategoryDTO;
 import com.example.project_login.DTO.DrinkDTO;
 import com.example.project_login.Dialog.DeleteDrinkDialog;
 import com.example.project_login.R;
@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +29,7 @@ import java.util.List;
 
 public class DrinkActivity extends AppCompatActivity {
 
+    static final String ACTION = "action";
     final GridView gridView = findViewById(R.id.grdVw_Drink);
 
     @Override
@@ -37,7 +37,10 @@ public class DrinkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink);
 
-        List<DrinkDTO> drinkDTOS = getListData();
+        Intent intent = getIntent();
+        String categoryName = intent.getStringExtra(CATEGORY);
+
+        List<DrinkDTO> drinkDTOS = getListData(categoryName);
         gridView.setAdapter(new DrinkAdapter(this, drinkDTOS));
 
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -65,14 +68,14 @@ public class DrinkActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_Drink:
                 Intent intent = new Intent(DrinkActivity.this, AddDrinkActivity.class);
-                intent.putExtra("type", item.getTitle().toString());
+                intent.putExtra(ACTION, item.getTitle().toString());
                 startActivity(intent);
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
-    private List<DrinkDTO> getListData() {
+    private List<DrinkDTO> getListData(String categoryName) {
         List<DrinkDTO> list = new ArrayList<>();
         DatabaseReference listDrink = DrinkDAO.getMyDrinkDatabase();
 
@@ -82,7 +85,9 @@ public class DrinkActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
                     DrinkDTO drinkDTO = dataSnapshot.getValue(DrinkDTO.class);
-                    list.add(drinkDTO);
+                    if(drinkDTO.getDrinkCategory() == categoryName) {
+                        list.add(drinkDTO);
+                    }
                 }
             }
 

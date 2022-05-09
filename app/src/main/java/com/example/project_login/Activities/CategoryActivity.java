@@ -37,8 +37,9 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 CategoryDTO categoryDTO = (CategoryDTO) listView.getItemAtPosition(position);
+                String categoryName = categoryDTO.getCatName();
                 Intent intent = new Intent(CategoryActivity.this, DrinkActivity.class);
-                intent.putExtra(CATEGORY, categoryDTO.getCatName());
+                intent.putExtra(CATEGORY, categoryName);
                 startActivity(intent);
             }
         });
