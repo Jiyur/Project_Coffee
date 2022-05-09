@@ -6,18 +6,18 @@ public class DrinkDTO implements Serializable {
     private String id, category, image;
     private int price;
 
-    public DrinkDTO(String drinkId, String drinkImage, int drinkPrice) {
-        this.id = drinkId;
-        this.image = drinkImage;
-        this.price = drinkPrice;
+    public DrinkDTO(String id, String image, int price) {
+        this.id = id;
+        this.image = image;
+        this.price = price;
         category = "other";
     }
-    public DrinkDTO(String drinkId, String drinkCategory
-            , String drinkImage, int drinkPrice) {
-        this.id = drinkId;
-        this.category = drinkCategory;
-        this.image = drinkImage;
-        this.price = drinkPrice;
+    public DrinkDTO(String id, String category
+            , String image, int price) {
+        this.id = id;
+        this.category = category;
+        this.image = image;
+        this.price = price;
     }
 
     public String getDrinkId() {
@@ -36,19 +36,19 @@ public class DrinkDTO implements Serializable {
         return category;
     }
 
-    public void setDrinkId(String drinkId) {
-        this.id = drinkId;
+    public void setDrinkId(String id) {
+        this.id = id;
     }
 
-    public void setDrinkCategory(String drinkCategory) {
-        this.category = drinkCategory;
+    public void setDrinkCategory(String category) {
+        this.category = category;
     }
 
-    public void setDrinkImage(String drinkImage) {
-        this.image = drinkImage;
+    public void setDrinkImage(String image) {
+        this.image = image;
     }
 
-    public void setDrinkPrice(int drinkPrice) {
-        this.price = drinkPrice;
+    public void setDrinkPrice(int price) {
+        this.price = price;
     }
 }
