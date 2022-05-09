@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
-    public static final int CATEGORY_COUNT = 4;
     final ListView listView = findViewById(R.id.lstVw_Category);
     static final String CATEGORY = "category";
 
@@ -52,9 +51,9 @@ public class CategoryActivity extends AppCompatActivity {
         listCategory.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (int count = CATEGORY_COUNT; count >= 0; count--)
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    CategoryDTO categoryDTO = snapshot.getValue(CategoryDTO.class);
+                    CategoryDTO categoryDTO = dataSnapshot.getValue(CategoryDTO.class);
                     list.add(categoryDTO);
                 }
             }
