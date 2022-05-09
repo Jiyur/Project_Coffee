@@ -5,6 +5,12 @@ public class Table {
     private int idBill;
     private String status;
 
+    public Table(String idTable, int idBill, String status) {
+        this.idTable = idTable;
+        this.idBill = idBill;
+        this.status = status;
+    }
+
     public Table() {
     }
 

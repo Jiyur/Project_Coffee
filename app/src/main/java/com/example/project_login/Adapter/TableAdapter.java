@@ -8,9 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.project_login.DAO.TableDAO;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
+import com.google.firebase.database.DatabaseReference;
 
 import org.w3c.dom.Text;
 
@@ -46,14 +48,14 @@ public class TableAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = layoutInflater.inflate(layout, null);
-        Table table = listTable.get(i);
         TextView tableTitleText = view.findViewById(R.id.title_table);
         ImageView tableImg = view.findViewById(R.id.table_img);
-
         tableTitleText.setText("Table " + String.valueOf(i + 1));
-        tableImg.setImageResource(R.drawable.icon_table_empty);
-
-
+        if(listTable.get(i).getStatus().equals("yes")){
+            tableImg.setImageResource(R.drawable.icon_table_not_empty);
+        } else{
+            tableImg.setImageResource(R.drawable.icon_table_empty);
+        }
         return view;
     }
 }

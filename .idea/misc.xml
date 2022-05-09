@@ -14,10 +14,12 @@
         <entry key="..\:/Project_Coffee/app/src/main/res/drawable/bg_while_conner_16.xml" value="0.1705" />
         <entry key="..\:/Project_Coffee/app/src/main/res/drawable/botron.xml" value="0.1815" />
         <entry key="..\:/Project_Coffee/app/src/main/res/drawable/circle.xml" value="0.1815" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/drawable/dialog_edit_table.xml" value="0.1705" />
         <entry key="..\:/Project_Coffee/app/src/main/res/drawable/ic_add.xml" value="0.1705" />
         <entry key="..\:/Project_Coffee/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1815" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout-v31/activity_login.xml" value="0.12771739130434784" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout-v31/dialog_add_table.xml" value="0.14130434782608695" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/layout-v31/dialog_edit_table.xml" value="0.1" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_add_staff.xml" value="0.1796875" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_edit_staff.xml" value="0.16666666666666666" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_forget_password.xml" value="0.1621376811594203" />
@@ -32,6 +34,8 @@
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_table_management.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_verify_otpactivity.xml" value="0.1621376811594203" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/dialog_change_password.xml" value="0.1" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/layout/dialog_edit_table.xml" value="0.1" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/layout/dialog_order_pay.xml" value="0.13333333333333333" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/list_staff_item.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/list_table_item.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/login_tab_fragment.xml" value="0.1621376811594203" />

@@ -18,5 +18,4 @@
         android:text="Number"
         android:textSize="25dp"
         android:layout_marginTop="5dp"/>
-
 </LinearLayout>

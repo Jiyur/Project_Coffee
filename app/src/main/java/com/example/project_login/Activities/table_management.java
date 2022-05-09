@@ -8,15 +8,23 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.project_login.Adapter.TableAdapter;
@@ -26,6 +34,7 @@ import com.example.project_login.DTO.Table;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,7 +62,12 @@ public class table_management extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mDatabase = TableDAO.getMyDatabase();
 
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                optionOfTable(Gravity.CENTER);
+            }
+        });
         showTable();
     }
 
@@ -165,13 +179,85 @@ public class table_management extends AppCompatActivity {
                 TableDAO.delete(table.getIdTable(), table_management.this);
                 break;
             case R.id.edit_item:
-//                Intent intent = new Intent(table_management.this, edit_staff.class);
-//                intent.putExtra("table", table);
-//                startActivity(intent);
+                editTable(Gravity.CENTER);
                 break;
             default:break;
         }
         return super.onContextItemSelected(item);
     }
 
+    public void editTable(int center){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_edit_table);
+
+        Window window = dialog.getWindow();
+        if(window == null){
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = center;
+        window.setAttributes(windowAttributes);
+
+        TextInputEditText idBill_txt = dialog.findViewById(R.id.idBill_txt);
+        TextInputEditText status_txt = dialog.findViewById(R.id.status_txt);
+        Button save_btn = dialog.findViewById(R.id.save_btn);
+        Button cancel_btn = dialog.findViewById(R.id.cancell_btn);
+
+        save_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TableDAO.update(new Table(table.getIdTable(), Integer.parseInt(idBill_txt.getText().toString()),
+                        status_txt.getText().toString()), table_management.this);
+            }
+        });
+
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Toast.makeText(table_management.this, "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
+    }
+
+    public void optionOfTable(int center){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_order_pay);
+
+        Window window = dialog.getWindow();
+        if(window == null){
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = center;
+        window.setAttributes(windowAttributes);
+        ImageButton order_imgBtn = dialog.findViewById(R.id.order_imgBtn);
+        ImageButton  pay_imgBtn = dialog.findViewById(R.id.pay_imgBtn);
+
+        order_imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        pay_imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Toast.makeText(table_management.this, "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
+    }
 }

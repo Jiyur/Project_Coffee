@@ -65,16 +65,15 @@ public class TableDAO {
     }
     public static void update(Table table, Context context){
         HashMap<String, Object> postValues = new HashMap<>();
-        postValues.put(table.getIdTable()+"/idTable", table.getIdTable());
         postValues.put(table.getIdTable()+"/idBill", table.getIdBill());
         postValues.put(table.getIdTable()+"/status", table.getStatus());
         myDatabase.updateChildren(postValues, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if(error == null){
-                    Toast.makeText(context, "Add table success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Edit table success", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(context, "Add table fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Edit table fail", Toast.LENGTH_SHORT).show();
                 }
             }
         });
