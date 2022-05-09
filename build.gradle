@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.10'
+
     }
 }
 plugins {
@@ -13,9 +14,12 @@ plugins {
 }
 allprojects {
     repositories {
+
     }
+
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
