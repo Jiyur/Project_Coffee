@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.4'
 
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+    implementation 'gun0912.ted:tedbottompicker:2.0.1'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
