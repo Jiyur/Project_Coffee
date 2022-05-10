@@ -47,12 +47,14 @@ public class DoanhThuActivity extends AppCompatActivity {
     }
     public void LoadData(){
         DatabaseReference myDatabase = BillDAO.getMyDatabase();
-        arrayListBill.clear();
 
         myDatabase.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arrayListBill.clear();
+                RevenueMonthly = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Bill billData = postSnapshot.getValue(Bill.class);
                     arrayListBill.add(billData);
@@ -137,7 +139,7 @@ public class DoanhThuActivity extends AppCompatActivity {
         barChart.setData(barData);
         barChart.getDescription().setText("Doanh thu tháng");
         barChart.animateY(1000 );
-        String text=total_tv.getText()+String.valueOf(total);
+        String text="Tổng thu: "+String.valueOf(total);
         total_tv.setText(text);
 
 
