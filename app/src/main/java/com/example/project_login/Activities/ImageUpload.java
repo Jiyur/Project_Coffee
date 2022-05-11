@@ -106,7 +106,8 @@ public class ImageUpload extends Activity {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         Drinks drinks=new Drinks("coffee","Water",uri.toString(),1234);
-
+                                        DatabaseReference databaseReference=FirebaseDatabase.getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("Drinks");
+                                        databaseReference.child(drinks.getId()).setValue(drinks);
                                         Glide.with(getApplicationContext()).load(Uri.parse(drinks.getImage())).into(binding.imageUpload);
                                     }
                                 });
