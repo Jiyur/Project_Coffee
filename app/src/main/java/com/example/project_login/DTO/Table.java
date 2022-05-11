@@ -2,10 +2,10 @@ package com.example.project_login.DTO;
 
 public class Table {
     private String idTable;
-    private int idBill;
+    private String idBill;
     private String status;
 
-    public Table(String idTable, int idBill, String status) {
+    public Table(String idTable, String idBill, String status) {
         this.idTable = idTable;
         this.idBill = idBill;
         this.status = status;
@@ -17,7 +17,7 @@ public class Table {
     public Table(String status) {
         this.status = status;
         this.idTable = "";
-        this.idBill = 0;
+        this.idBill = "";
     }
 
     public Table(String idTable, String status) {
@@ -33,11 +33,11 @@ public class Table {
         this.idTable = idTable;
     }
 
-    public int getIdBill() {
+    public String getIdBill() {
         return idBill;
     }
 
-    public void setIdBill(int idBill) {
+    public void setIdBill(String idBill) {
         this.idBill = idBill;
     }
 

@@ -1,5 +1,7 @@
 package com.example.project_login.Activities.Table;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.Menu;
@@ -25,9 +28,12 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.project_login.Activities.Bill.BillActivity;
 import com.example.project_login.Activities.HomePageActivity;
 import com.example.project_login.Adapter.TableAdapter;
+import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DAO.TableDAO;
+import com.example.project_login.DTO.Bill;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -35,6 +41,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +68,7 @@ public class table_management extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                optionOfTable(Gravity.CENTER);
+                optionOfTable(Gravity.CENTER, i);
             }
         });
         showTable();
@@ -85,7 +92,16 @@ public class table_management extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Table table = snapshot.getValue(Table.class);
+                for(int i=0; i<tableList.size(); ++i){
+                    if(tableList.get(i).getIdTable().equals(table.getIdTable())){
+                        tableList.set(i, table);
+                    }
+                }
 
+                tableAdapter = new TableAdapter(table_management.this, R.layout.list_table_item, tableList);
+                gridView.setAdapter(tableAdapter);
+                registerForContextMenu(gridView);
             }
 
             @Override
@@ -102,7 +118,6 @@ public class table_management extends AppCompatActivity {
                     }
                 }
                 tableAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -207,7 +222,7 @@ public class table_management extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TableDAO.update(new Table(table.getIdTable(), Integer.parseInt(idBill_txt.getText().toString()),
+                TableDAO.update(new Table(table.getIdTable(), idBill_txt.getText().toString(),
                         status_txt.getText().toString()), table_management.this);
             }
         });
@@ -222,7 +237,7 @@ public class table_management extends AppCompatActivity {
         dialog.show();
     }
 
-    public void optionOfTable(int center){
+    public void optionOfTable(int center, int pos){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_order_pay);
@@ -244,16 +259,51 @@ public class table_management extends AppCompatActivity {
         order_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e(TAG, "Order - " + pos);
             }
         });
 
         pay_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
-                Toast.makeText(table_management.this, "Cancel", Toast.LENGTH_SHORT).show();
+                if(tableList.get(pos).getStatus().equals("no")){
+                    Toast.makeText(table_management.this, "Empty table", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    Intent intent = new Intent(table_management.this, BillActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("billID", tableList.get(pos).getIdBill());
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    dialog.dismiss();
+                    Log.e(TAG, "Payment - " + pos);
+                }
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        DatabaseReference myDataBill = BillDAO.getMyDatabase();
+        for(int i=0; i<tableList.size(); ++i){
+            int pos = i;
+            myDataBill.child(tableList.get(pos).getIdBill()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Bill bill = snapshot.getValue(Bill.class);
+                    if(bill == null)
+                        return;
+                    if(bill.isPayment() && tableList.get(pos).getStatus().equals("yes")){
+                        tableList.get(pos).setStatus("no");
+                        TableDAO.update(tableList.get(pos), table_management.this);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) { }
+            });
+        }
     }
 }

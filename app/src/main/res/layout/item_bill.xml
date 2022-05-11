@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/botron"
+    android:weightSum="10">
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageviewdrink"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+        </ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_weight="6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Tên đồ uống"
+            android:textColor="@color/black"
+            android:id="@+id/textviewname"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="3dp"
+            android:text="Gía đồ uống"
+            android:textColor="#F44336"
+            android:id="@+id/textviewprice"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Số lượng: "
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textviewquantity"
+                android:text="0 "
+                android:textColor="@color/purple_700"
+                android:textSize="17dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -80,7 +80,6 @@ public class LoginTabFragment  extends Fragment {
                                         intent.putExtra("mobile_phone",phoneStr.trim());
                                         startActivity(intent);
                                     }
-//
                                 }
 
                                 else{
