@@ -6,13 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DTO.Bill;
 import com.example.project_login.R;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
