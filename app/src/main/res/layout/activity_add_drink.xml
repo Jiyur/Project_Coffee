@@ -39,21 +39,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtVw_AddDrink" />
 
     <EditText
-        android:id="@+id/edtTxt_DrinkCategory"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_bg"
-        android:ems="10"
-        android:hint="   Danh mục"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxt_DrinkName" />
-
-    <EditText
         android:id="@+id/edtTxt_DrinkPrice"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -66,7 +51,7 @@
         android:inputType="textPersonName|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxt_DrinkCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/spn_DrinkCategory" />
 
     <ImageView
         android:id="@+id/imgVw_DrinkImage"
@@ -93,4 +78,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgVw_DrinkImage" />
+
+    <Spinner
+        android:id="@+id/spn_DrinkCategory"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxt_DrinkName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

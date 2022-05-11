@@ -54,15 +54,6 @@ public class CategoryAdapter extends BaseAdapter {
         }
 
         CategoryDTO categoryDTO = this.categoryDTOList.get(position);
-        if(categoryDTO.getCatName() == "coffee") {
-            holder.catName.setText("Coffee");
-        } else if (categoryDTO.getCatName() == "juice") {
-            holder.catName.setText("Juice");
-        } else if (categoryDTO.getCatName() == "tea") {
-            holder.catName.setText("Tea");
-        } else {
-            holder.catName.setText("Other Drinks");
-        }
 
         int imageId = this.getDrawableResIdByName(categoryDTO.getCatName());
 
