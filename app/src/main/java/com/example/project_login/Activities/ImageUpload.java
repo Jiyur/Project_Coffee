@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -91,7 +92,8 @@ public class ImageUpload extends Activity {
         Date now =new Date();
         String fileName=format.format(now);
         storageReference= FirebaseStorage.getInstance().getReference();
-        storageReference.child("images/"+fileName).putFile(imageUri)
+        storageReference.child("images/"+fileName)
+                .putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -99,14 +101,15 @@ public class ImageUpload extends Activity {
                         Toast.makeText(ImageUpload.this, "Success upload", Toast.LENGTH_SHORT).show();
                         if(progressDialog.isShowing())
                             progressDialog.dismiss();
-//                        storageReference.child("images/"+fileName).getDownloadUrl()
-//                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                    @Override
-//                                    public void onSuccess(Uri uri) {
-//                                        Log.e("Link: ",uri.toString());
-//                                        Glide.with(getApplicationContext()).load(uri).into(binding.imageUpload);
-//                                    }
-//                                });
+                        storageReference.child("images/"+fileName).getDownloadUrl()
+                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Drinks drinks=new Drinks("coffee","Water",uri.toString(),1234);
+
+                                        Glide.with(getApplicationContext()).load(Uri.parse(drinks.getImage())).into(binding.imageUpload);
+                                    }
+                                });
 
 
                     }
