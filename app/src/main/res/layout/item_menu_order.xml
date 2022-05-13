@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/botron">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drinks_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#FF000000"/>
+
+        <LinearLayout
+            android:layout_width="179dp"
+            android:layout_height="99dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textviewname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="20dp"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textviewcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="15dp"
+                android:text="Category:   Other" />
+
+            <TextView
+                android:id="@+id/textviewprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="15dp"
+                android:text="Price:   0" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonorder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/transparen_line"/>
+    </LinearLayout>

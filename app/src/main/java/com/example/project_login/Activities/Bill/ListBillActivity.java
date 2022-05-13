@@ -37,6 +37,25 @@ public class ListBillActivity extends AppCompatActivity {
 
         Init();
         LoadData();
+        AddEvents();
+    }
+
+    private void AddEvents() {
+        lvBill.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+
+                String item = (String) lvBill.getAdapter().getItem(pos);
+                String billID = "";
+
+                billID = item;
+                Intent intent = new Intent(ListBillActivity.this, BillActivity.class);
+                Bundle b = new Bundle();
+                b.putString("tableID/billID", "/"  + billID);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
     }
 
     private void LoadData() {
@@ -57,7 +76,7 @@ public class ListBillActivity extends AppCompatActivity {
                 Collections.sort(arrayListBill, new Bill());
 
                 for(int i=0; i<arrayListBill.size(); ++i){
-                    arrayListItem.add("Bàn " +  arrayListBill.get(i).getTable() + " - " + arrayListBill.get(i).getTime() + " :" + arrayListBill.get(i).getId() );
+                    arrayListItem.add(arrayListBill.get(i).getId());
                 }
 
                 arrayAdapter = new ArrayAdapter<String>(ListBillActivity.this, android.R.layout.simple_list_item_1, arrayListItem);
@@ -75,24 +94,6 @@ public class ListBillActivity extends AppCompatActivity {
     private void Init(){
         txtTittle = (TextView) findViewById(R.id.textviewtittle);
         lvBill = (ListView) findViewById(R.id.listviewBill);
-
-        lvBill.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-
-                String item = (String) lvBill.getAdapter().getItem(pos);
-                String billID = "";
-                for(int i = item.length()-1; i>0; --i){
-                    if(item.charAt(i) == ':') break;
-                    billID = item.charAt(i) + billID;
-                }
-                Intent intent = new Intent(ListBillActivity.this, BillActivity.class);
-                Bundle b = new Bundle();
-                b.putString("billID", billID);
-                intent.putExtras(b);
-                startActivity(intent);
-            }
-        });
     }
 
     public void btnbBack_Click(View view) { finish(); }

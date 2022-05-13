@@ -22,7 +22,7 @@
             android:textSize="25dp"
             android:textColor="#12110D"
             android:layout_width="match_parent"
-            android:layout_height="110dp"/>
+            android:layout_height="110dp" />
         <TextView
             android:id="@+id/textviewtittle"
             android:layout_gravity="bottom"
@@ -58,7 +58,9 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical"
                 android:scrollingCache="true"
-                android:smoothScrollbar="true"/>
+                android:smoothScrollbar="true"
+                android:dividerHeight="10.0sp"
+                android:divider="@drawable/transparen_line"/>
         </FrameLayout>
     </LinearLayout>
 

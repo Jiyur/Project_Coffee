@@ -20,7 +20,7 @@ public class Bill implements Parcelable, Comparator<Bill> {
 
     @Override
     public int compare(Bill bill1, Bill bill2) {
-        SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         Date date1 = new Date(), date2 = new Date();
         try {
             date1 = formatter.parse(bill1.getTime());
@@ -37,6 +37,16 @@ public class Bill implements Parcelable, Comparator<Bill> {
         this.id = "";
         this.table = "";
         this.time = "";
+        this.isPayment = false;
+        this.listDrinks = new ArrayList<Drinks>();
+        this.listQuantity = new ArrayList<Integer>();
+    }
+
+    public Bill(String id, String table, String time){
+        this.total = 0;
+        this.id = id;
+        this.table = table;
+        this.time = time;
         this.isPayment = false;
         this.listDrinks = new ArrayList<Drinks>();
         this.listQuantity = new ArrayList<Integer>();

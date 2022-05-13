@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.project_login.Activities.Bill.BillActivity;
 import com.example.project_login.Activities.HomePageActivity;
+import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.Adapter.TableAdapter;
 import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DAO.TableDAO;
@@ -43,7 +44,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -259,7 +263,12 @@ public class table_management extends AppCompatActivity {
         order_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e(TAG, "Order - " + pos);
+                Intent intent = new Intent(table_management.this, MenuOrderActivity.class);
+                Bundle b = new Bundle();
+                b.putString("tableID/tableName", tableList.get(pos).getIdTable() + "/" + ((Integer) (pos + 1)).toString() );
+                intent.putExtras(b);
+                startActivity(intent);
+                dialog.dismiss();
             }
         });
 
@@ -272,38 +281,13 @@ public class table_management extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent(table_management.this, BillActivity.class);
                     Bundle b = new Bundle();
-                    b.putString("billID", tableList.get(pos).getIdBill());
+                    b.putString("tableID/billID", tableList.get(pos).getIdTable() + "/" + tableList.get(pos).getIdBill());
                     intent.putExtras(b);
                     startActivity(intent);
                     dialog.dismiss();
-                    Log.e(TAG, "Payment - " + pos);
                 }
             }
         });
         dialog.show();
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        DatabaseReference myDataBill = BillDAO.getMyDatabase();
-        for(int i=0; i<tableList.size(); ++i){
-            int pos = i;
-            myDataBill.child(tableList.get(pos).getIdBill()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Bill bill = snapshot.getValue(Bill.class);
-                    if(bill == null)
-                        return;
-                    if(bill.isPayment() && tableList.get(pos).getStatus().equals("yes")){
-                        tableList.get(pos).setStatus("no");
-                        TableDAO.update(tableList.get(pos), table_management.this);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) { }
-            });
-        }
     }
 }

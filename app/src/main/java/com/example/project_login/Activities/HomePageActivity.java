@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.project_login.Activities.Bill.ListBillActivity;
 import com.example.project_login.Activities.StaffManagement.management_staff;
 import com.example.project_login.Activities.StaffManagement.staff_profile;
 import com.example.project_login.Activities.Table.table_management;
@@ -74,6 +75,15 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, table_management.class);
+                startActivity(intent);
+            }
+        });
+
+        final com.google.android.material.card.MaterialCardView listBillMaterialCardView = findViewById(R.id.listbill_item);
+        listBillMaterialCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, ListBillActivity.class);
                 startActivity(intent);
             }
         });
