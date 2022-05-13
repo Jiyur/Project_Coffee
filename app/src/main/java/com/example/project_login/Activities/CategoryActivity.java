@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,17 +23,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
-    final ListView listView = findViewById(R.id.lstVw_Category);
+    ListView listView;
     static final String CATEGORY = "category";
+    CategoryAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        listView=findViewById(R.id.lstVw_Category);
+        List<CategoryDTO> categoryDTOList = new ArrayList<>();
+        myAdapter=new CategoryAdapter(this,categoryDTOList);
+//        listView.setAdapter(new CategoryAdapter(this, categoryDTOList));
+        listView.setAdapter(myAdapter);
+        DatabaseReference databaseReference=CategoryDAO.getCategory();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                categoryDTOList.clear();
+                for(DataSnapshot snap: snapshot.getChildren()){
+                    CategoryDTO category=snap.getValue(CategoryDTO.class);
+                    Log.e("Cate:",category.getCatName());
+                    categoryDTOList.add(category);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
 
-        List<CategoryDTO> categoryDTOList = getListData();
-        listView.setAdapter(new CategoryAdapter(this, categoryDTOList));
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -43,27 +64,8 @@ public class CategoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//
     }
 
-    private List<CategoryDTO> getListData() {
-        List<CategoryDTO> list = new ArrayList<>();
-        DatabaseReference listCategory = CategoryDAO.getCategory();
-
-        listCategory.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren())
-                {
-                    CategoryDTO categoryDTO = dataSnapshot.getValue(CategoryDTO.class);
-                    list.add(categoryDTO);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return list;
-    }
+//
 }

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_login.Adapter.DrinkAdapter;
 import com.example.project_login.DAO.DrinkDAO;
-import com.example.project_login.DTO.DrinkDTO;
+import com.example.project_login.DTO.Drinks;
 import com.example.project_login.Dialog.DeleteDrinkDialog;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,25 +31,47 @@ import java.util.List;
 public class DrinkActivity extends AppCompatActivity {
 
     static final String ACTION = "action";
-    final GridView gridView = findViewById(R.id.grdVw_Drink);
+    GridView gridView;
+    DrinkAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink);
-
+        gridView = findViewById(R.id.grdVw_Drink);
         Intent intent = getIntent();
         String categoryName = intent.getStringExtra(CATEGORY);
+        List<Drinks> drinks=new ArrayList<>();
+        myAdapter=new DrinkAdapter(this,drinks);
+        gridView.setAdapter(myAdapter);
+        DatabaseReference databaseReference=DrinkDAO.getMyDrinkDatabase();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                drinks.clear();
+                for(DataSnapshot snap: snapshot.getChildren()){
+                    Drinks drink=snap.getValue(Drinks.class);
+                    if (drink.getCategory().equals("coffee")){
+                        drinks.add(drink);
 
-        List<DrinkDTO> drinkDTOS = getListData(categoryName);
-        gridView.setAdapter(new DrinkAdapter(this, drinkDTOS));
+                    }
 
+                }
+                myAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                DrinkDTO drinkDTO = (DrinkDTO) gridView.getItemAtPosition(position);
+                Drinks drink = (Drinks) gridView.getItemAtPosition(position);
                 DeleteDrinkDialog deleteDrinkDialog =
-                        new DeleteDrinkDialog(DrinkActivity.this, drinkDTO.getDrinkId());
+                        new DeleteDrinkDialog(DrinkActivity.this, drink.getId());
                 deleteDrinkDialog.show();
                 return true;
             }
@@ -75,8 +98,8 @@ public class DrinkActivity extends AppCompatActivity {
         }
     }
 
-    private List<DrinkDTO> getListData(String categoryName) {
-        List<DrinkDTO> list = new ArrayList<>();
+    private List<Drinks> getListData(String categoryName) {
+        List<Drinks> list = new ArrayList<>();
         DatabaseReference listDrink = DrinkDAO.getMyDrinkDatabase();
 
         listDrink.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -84,9 +107,9 @@ public class DrinkActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren())
                 {
-                    DrinkDTO drinkDTO = dataSnapshot.getValue(DrinkDTO.class);
-                    if(drinkDTO.getDrinkCategory() == categoryName) {
-                        list.add(drinkDTO);
+                    Drinks drink = dataSnapshot.getValue(Drinks.class);
+                    if(drink.getCategory() == categoryName) {
+                        list.add(drink);
                     }
                 }
             }

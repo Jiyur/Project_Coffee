@@ -1,6 +1,7 @@
 package com.example.project_login.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,30 +10,31 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.project_login.DTO.DrinkDTO;
+import com.bumptech.glide.Glide;
+import com.example.project_login.DTO.Drinks;
 import com.example.project_login.R;
 
 import java.util.List;
 
 public class DrinkAdapter extends BaseAdapter {
-    private List<DrinkDTO> drinkDTO;
+    private List<Drinks> drinkList;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public DrinkAdapter(Context context, List<DrinkDTO> drinkDTO) {
+    public DrinkAdapter(Context context, List<Drinks> drinkList) {
         this.context = context;
-        this.drinkDTO = drinkDTO;
+        this.drinkList = drinkList;
         layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return drinkDTO.size();
+        return drinkList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return drinkDTO.get(position);
+        return drinkList.get(position);
     }
 
     @Override
@@ -54,14 +56,14 @@ public class DrinkAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        DrinkDTO drinkDTO = this.drinkDTO.get(position);
-        holder.drinkName.setText(drinkDTO.getDrinkId());
-        holder.drinkPrice.setText(drinkDTO.getDrinkPrice());
+        Drinks drink = drinkList.get(position);
+        holder.drinkName.setText(drink.getId());
+        holder.drinkPrice.setText(String.valueOf(drink.getPrice()));
 
-        int imageId = this.getDrawableResIdByName(drinkDTO.getDrinkImage());
+        int imageId = this.getDrawableResIdByName(drink.getImage());
 
-        holder.drinkImage.setImageResource(imageId);
-
+//        holder.drinkImage.setImageURI(Uri.parse(drink.getImage()));
+        Glide.with(context).load(Uri.parse(drink.getImage())).into(holder.drinkImage);
         return view;
     }
 

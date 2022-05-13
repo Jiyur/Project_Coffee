@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project_login.DAO.DrinkDAO;
-import com.example.project_login.DTO.DrinkDTO;
+import com.example.project_login.DTO.Drinks;
 import com.example.project_login.R;
 
 public class AddDrinkActivity extends AppCompatActivity {
@@ -46,18 +46,18 @@ public class AddDrinkActivity extends AppCompatActivity {
                     } else if (drinkCategory.isEmpty()) {
                         String category = "other";
 
-                        DrinkDTO drinkDTO = new DrinkDTO(drinkName, category, "", Integer.parseInt(drinkPrice));
+                        Drinks drink = new Drinks(drinkName, category, "", Integer.parseInt(drinkPrice));
                         DrinkDAO drinkDAO = new DrinkDAO();
 
-                        drinkDAO.insertDrink(drinkName, drinkDTO);
+                        drinkDAO.insertDrink(drinkName, drink);
 
                         Toast.makeText(AddDrinkActivity.this, "Đã thêm thành công"
                                 , Toast.LENGTH_SHORT).show();
                     } else {
-                        DrinkDTO drinkDTO = new DrinkDTO(drinkName, drinkCategory, "", Integer.parseInt(drinkPrice));
+                        Drinks drink = new Drinks(drinkName, drinkCategory, "", Integer.parseInt(drinkPrice));
                         DrinkDAO drinkDAO = new DrinkDAO();
 
-                        drinkDAO.insertDrink(drinkName, drinkDTO);
+                        drinkDAO.insertDrink(drinkName, drink);
 
                         Toast.makeText(AddDrinkActivity.this, "Đã thêm thành công"
                                 , Toast.LENGTH_SHORT).show();
