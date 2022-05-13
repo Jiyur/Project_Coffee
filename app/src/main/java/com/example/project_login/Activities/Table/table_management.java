@@ -128,10 +128,10 @@ public class table_management extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent = new Intent(table_management.this, HomePageActivity.class);
-                startActivity(intent);
-                finish();
-//                onBackPressed();
+//                Intent intent = new Intent(table_management.this, HomePageActivity.class);
+//                startActivity(intent);
+//                finish();
+                onBackPressed();
                 break;
             case R.id.add_item:
                 add_table();
@@ -202,21 +202,14 @@ public class table_management extends AppCompatActivity {
         TextInputEditText idBill_txt = dialog.findViewById(R.id.idBill_txt);
         TextInputEditText status_txt = dialog.findViewById(R.id.status_txt);
         Button save_btn = dialog.findViewById(R.id.save_btn);
-        Button cancel_btn = dialog.findViewById(R.id.cancell_btn);
 
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TableDAO.update(new Table(table.getIdTable(), Integer.parseInt(idBill_txt.getText().toString()),
-                        status_txt.getText().toString()), table_management.this);
-            }
-        });
-
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 dialog.dismiss();
-                Toast.makeText(table_management.this, "Cancel", Toast.LENGTH_SHORT).show();
+                showTable();
+                TableDAO.update(new Table(table.getIdTable(), idBill_txt.getText().toString(),
+                        status_txt.getText().toString()), table_management.this);
             }
         });
         dialog.show();

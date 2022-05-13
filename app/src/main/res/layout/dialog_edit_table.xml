@@ -6,15 +6,6 @@
     android:background="@drawable/bg_while_conner_16"
     android:layout_margin="16dp"
     android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textSize="16dp"
-        android:text="Change Password"
-        android:gravity="center"
-        android:background="@drawable/bg_brown_conner_16_top_left_right"/>
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="12dp"
-            android:hint="ID Bill">
+            android:hint="ID Bill"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/idBill_txt"
@@ -44,7 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="12dp"
-            android:hint="Status">
+            android:hint="Status"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/status_txt"
@@ -60,16 +53,6 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
             android:gravity="center">
-
-            <Button
-                android:id="@+id/cancell_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="14dp"
-                android:text="Cancel"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/botron"/>
 
             <Button
                 android:id="@+id/save_btn"

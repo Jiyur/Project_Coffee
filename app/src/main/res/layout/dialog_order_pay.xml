@@ -18,12 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_margin="10dp">
             <ImageButton
                 android:id="@+id/order_imgBtn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="25dp"
                 android:background="@drawable/icon_oder"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -35,18 +35,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_margin="10dp">
             <ImageButton
                 android:id="@+id/pay_imgBtn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="25dp"
                 android:background="@drawable/icon_money" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:text="Payment"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="10dp">
+            <ImageButton
+                android:id="@+id/change_imgBtn"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/icon_change" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Change"/>
         </LinearLayout>
     </LinearLayout>
 
