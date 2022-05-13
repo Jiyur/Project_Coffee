@@ -12,19 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Login">
         <activity
+            android:name=".Activities.edit_drink"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.add_drink"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.drink_by_category"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.menu_category"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ImageUpload"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Activities.DoanhThuActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Activities.Table.table_management"
             android:exported="false" />
@@ -64,7 +68,13 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="false"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

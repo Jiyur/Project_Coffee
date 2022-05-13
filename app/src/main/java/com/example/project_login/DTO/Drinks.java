@@ -5,14 +5,15 @@ import android.os.Parcelable;
 
 public class Drinks implements Parcelable {
     String category;
-    String id;
+    String Id;
+    String name;
     String image;
     Integer price;
 
     public  Drinks(){ }
-    public  Drinks(String category, String id, String image, Integer price){
+    public  Drinks(String category, String name, String image, Integer price){
         this.category = category;
-        this.id = id;
+        this.name = name;
         this.image = image;
         this.price = price;
     }
@@ -26,11 +27,19 @@ public class Drinks implements Parcelable {
     }
 
     public String getId() {
-        return id;
+        return Id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getImage() {
@@ -51,7 +60,7 @@ public class Drinks implements Parcelable {
 
     protected Drinks(Parcel in) {
         category = in.readString();
-        id = in.readString();
+        name = in.readString();
         image = in.readString();
         if (in.readByte() == 0) {
             price = null;
@@ -63,7 +72,7 @@ public class Drinks implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(category);
-        dest.writeString(id);
+        dest.writeString(name);
         dest.writeString(image);
         if (price == null) {
             dest.writeByte((byte) 0);

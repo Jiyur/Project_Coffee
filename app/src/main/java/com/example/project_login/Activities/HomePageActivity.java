@@ -77,6 +77,15 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        final com.google.android.material.card.MaterialCardView menuMaterialCardView = findViewById(R.id.menu_item);
+        menuMaterialCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, menu_category.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
