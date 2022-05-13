@@ -7,9 +7,11 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.project_login.DAO.BillDAO;
@@ -31,9 +33,10 @@ public class ThuNhapActivity extends AppCompatActivity {
     Button btnTuNgay,btnDenNgay,btnDoanhThu;
     EditText edTuNgay,edDenNgay;
     TextView tvDoanhThu;
+    ListView lvBill;
     SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
     int mYear,mDay, mMonth;
-
+    ArrayList<String> arrayListItem = new ArrayList<String>();
     ArrayList<Bill> arrayListBill = new ArrayList<Bill>();
     public static Bill billData = new Bill();
 
@@ -53,6 +56,7 @@ public class ThuNhapActivity extends AppCompatActivity {
         edTuNgay=findViewById(R.id.edTuNgay);
         edDenNgay=findViewById(R.id.edDenNgay);
         tvDoanhThu=findViewById(R.id.tvDoanhThuNgay);
+        lvBill=findViewById(R.id.lvBill);
     }
     DatePickerDialog.OnDateSetListener mDateTuNgay= new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -113,6 +117,7 @@ public class ThuNhapActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayListBill.clear();
+
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     billData = postSnapshot.getValue(Bill.class);
                     arrayListBill.add(billData);
@@ -125,10 +130,14 @@ public class ThuNhapActivity extends AppCompatActivity {
             }
         });
     }
+    void loadListView(String dateTruoc, String dateSau){
+
+    }
     void tinhTong(String dateTruoc, String dateSau){
         Date dateBill;
         int tien=0;
         int flag=1;
+        ArrayAdapter<String> arrayAdapter;
         for (Bill bill: arrayListBill) {
 
             try {
@@ -139,7 +148,12 @@ public class ThuNhapActivity extends AppCompatActivity {
                 }*/
                 if(dateBill.compareTo(sdf.parse(dateTruoc))>=0 && dateBill.compareTo(sdf.parse(dateSau))<=0){
                     tien+=bill.getTotal();
-                    Log.d("OK", "tinhTong: "+tien);
+                    //Log.d("OK", "tinhTong: "+tien);
+
+                    arrayListItem.add(bill.getId() + " - " +  bill.getTotal());
+
+
+
                 }
                 else{
                     flag=0;
@@ -148,6 +162,8 @@ public class ThuNhapActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        arrayAdapter = new ArrayAdapter<String>(ThuNhapActivity.this, android.R.layout.simple_list_item_1, arrayListItem);
+        lvBill.setAdapter(arrayAdapter);
         if(flag==1){
             tvDoanhThu.setText("Doanh thu là: "+tien);
         }else{
