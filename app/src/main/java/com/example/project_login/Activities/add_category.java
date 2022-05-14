@@ -10,21 +10,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.example.project_login.DAO.CategoryDAO;
 import com.example.project_login.DAO.DrinkDAO;
-import com.example.project_login.DTO.Drinks;
+import com.example.project_login.DTO.Category;
 import com.example.project_login.R;
-import com.example.project_login.databinding.ActivityImageUploadBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -33,29 +28,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class add_drink extends AppCompatActivity {
-    ProgressDialog progressDialog;
-    TextInputEditText name_txt, price_txt, category_txt;
+public class add_category extends AppCompatActivity {
     ImageView imageView;
-    Button addBtn;
-    private static int REQUEST_CODE=1000;
+    TextInputEditText category_txt;
+    Button add_btn;
+    ProgressDialog progressDialog;
     Uri imageUri;
-    Drinks drink;
-    DatabaseReference mDatabase;
     StorageReference storageReference;
+    private static int REQUEST_CODE=1000;
+    private Category category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_drink);
+        setContentView(R.layout.activity_add_category);
 
-        name_txt = findViewById(R.id.textInputEditText_name);
-        price_txt = findViewById(R.id.textInputEditText_price);
+        imageView = findViewById(R.id.category_img);
         category_txt = findViewById(R.id.textInputEditText_category);
-        addBtn = findViewById(R.id.add_btn);
-        imageView = findViewById(R.id.drink_img);
-        category_txt.setText(getIntent().getStringExtra("Category"));
-        category_txt.setFocusable(false);
-        mDatabase = DrinkDAO.getMyDatabase();
+        add_btn = findViewById(R.id.add_btn);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,13 +56,12 @@ public class add_drink extends AppCompatActivity {
             }
         });
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Add();
+                add();
             }
         });
-
     }
 
     @Override
@@ -86,7 +76,7 @@ public class add_drink extends AppCompatActivity {
         }
     }
 
-    public void Add(){
+    public void add(){
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Uploading ...");
         progressDialog.show();
@@ -100,16 +90,15 @@ public class add_drink extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         imageView.setImageURI(null);
-                        Toast.makeText(add_drink.this, "Success upload", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(edit_drink.this, "Success upload", Toast.LENGTH_SHORT).show();
                         if(progressDialog.isShowing())
                             progressDialog.dismiss();
                         storageReference.child("images/"+fileName).getDownloadUrl()
                                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        drink = new Drinks(category_txt.getText().toString(), name_txt.getText().toString(),
-                                                uri.toString(), Integer.parseInt(price_txt.getText().toString()));
-                                        DrinkDAO.insert(add_drink.this, drink);
+                                        category = new Category(uri.toString(), category_txt.getText().toString());
+                                        CategoryDAO.insert(category, add_category.this);
                                     }
                                 });
 
@@ -120,7 +109,7 @@ public class add_drink extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 if(progressDialog.isShowing())
                     progressDialog.dismiss();
-                Toast.makeText(add_drink.this, "Failed!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(edit_drink.this, "Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }

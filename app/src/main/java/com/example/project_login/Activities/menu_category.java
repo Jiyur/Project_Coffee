@@ -21,6 +21,7 @@ import com.example.project_login.Adapter.MenuCategoryAdapter;
 import com.example.project_login.DAO.CategoryDAO;
 import com.example.project_login.DAO.TableDAO;
 import com.example.project_login.DTO.Category;
+import com.example.project_login.DTO.Drinks;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.R;
 import com.google.firebase.database.ChildEventListener;
@@ -80,7 +81,17 @@ public class menu_category extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                Category category = snapshot.getValue(Category.class);
+                if(category == null || listCat == null || listCat.isEmpty()){
+                    return;
+                }
+                for(int i = 0; i < listCat.size(); i++){
+                    if(category.getCatName().toString().equals(listCat.get(i).getCatName().toString())){
+                        listCat.remove(listCat.get(i));
+                        break;
+                    }
+                }
+                menuCategoryAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -112,14 +123,13 @@ public class menu_category extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.add_item:
-                add_category();
+                Intent intent = new Intent(menu_category.this, add_category.class);
+                startActivity(intent);
+//                finish();
+                break;
             default:break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void add_category(){
-
     }
 
     @Override
@@ -135,7 +145,7 @@ public class menu_category extends AppCompatActivity {
         category = (Category) menuCategoryAdapter.getItem(pos);
         switch (item.getItemId()){
             case R.id.delete_item:
-                TableDAO.delete(category.getCatName(), menu_category.this);
+                CategoryDAO.delete(category.getCatName(), menu_category.this);
                 break;
             case R.id.edit_item:
                 editCategory(Gravity.CENTER);

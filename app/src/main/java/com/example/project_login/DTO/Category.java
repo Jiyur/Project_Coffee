@@ -3,12 +3,21 @@ package com.example.project_login.DTO;
 import java.io.Serializable;
 
 public class Category implements Serializable {
-    private String catId;
+    private String img;
     private String catName;
 
     public Category() { }
-    public Category(String catName) {
+    public Category(String img, String catName) {
+        this.img = img;
         this.catName = catName;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getCatName() {

@@ -24,9 +24,17 @@ public class CategoryDAO {
     private static final DatabaseReference myDatabase= FirebaseDatabase
             .getInstance("https://coffee-42174-default-rtdb.asia-southeast1.firebasedatabase.app")
             .getReference("category");
-    public static void insert(){
-        Category category = new Category("Coffe");
-        myDatabase.push().setValue(category);
+    public static void insert(Category category, Context context){
+        myDatabase.child(category.getCatName()).setValue(category, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if (error == null){
+                    Toast.makeText(context, "Add category success", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "Add category fail", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     public static List<Category> getCategory(){
         List<Category> listCat = new ArrayList<Category>();
@@ -43,6 +51,33 @@ public class CategoryDAO {
             }
         });
         return listCat;
+    }
+
+    public static void delete(String id, Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Are you sure you want to delete?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                myDatabase.child(id).removeValue(new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        if(error == null){
+                            Toast.makeText(context, "Delete success", Toast.LENGTH_SHORT ).show();
+                        }else{
+                            Toast.makeText(context, "Delete fail", Toast.LENGTH_SHORT ).show();
+                        }
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(context, "Cancel delete", Toast.LENGTH_SHORT ).show();
+            }
+        });
+        builder.create().show();
     }
 
     public static DatabaseReference getMyDatabase() {

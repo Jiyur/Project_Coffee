@@ -64,8 +64,8 @@ public class drink_by_category extends AppCompatActivity {
                 HashMap<String, Object> postValues = new HashMap<>();
                 postValues.put(snapshot.getKey()+"/id", snapshot.getKey());
                 mDatabase.updateChildren(postValues);
-                Drinks drink = snapshot.getValue(Drinks.class);
-                drink.setId(snapshot.getKey());
+                Drinks drink = (Drinks) snapshot.getValue(Drinks.class);
+                drink.setId(snapshot.getKey().toString());
                 if(drink.getCategory().toString().equals(category)){
                     listDrink.add(drink);
                     drinkAdapter = new DrinkAdapter(drink_by_category.this, R.layout.list_drink_item, listDrink);

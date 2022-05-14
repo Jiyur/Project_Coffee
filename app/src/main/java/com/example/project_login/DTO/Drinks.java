@@ -18,6 +18,12 @@ public class Drinks implements Parcelable {
         this.price = price;
     }
 
+    public  Drinks( String name, String image, Integer price){
+        this.name = name;
+        this.image = image;
+        this.price = price;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -59,6 +65,7 @@ public class Drinks implements Parcelable {
     }
 
     protected Drinks(Parcel in) {
+        Id = in.readString();
         category = in.readString();
         name = in.readString();
         image = in.readString();
@@ -71,6 +78,7 @@ public class Drinks implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Id);
         dest.writeString(category);
         dest.writeString(name);
         dest.writeString(image);
