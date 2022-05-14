@@ -5,9 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.project_login.Activities.Bill.BillActivity;
+import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.DTO.Drinks;
 import com.example.project_login.R;
 import com.squareup.picasso.Picasso;
@@ -58,6 +61,7 @@ public class ItemBillAdapter extends BaseAdapter {
         TextView txtPrice = (TextView) view.findViewById(R.id.textviewprice);
         TextView txtQuantity = (TextView) view.findViewById(R.id.textviewquantity);
         ImageView imgDrink = (ImageView) view.findViewById(R.id.imageviewdrink);
+        Button btnEdit = (Button) view.findViewById(R.id.buttonedit);
 
         txtName.setText(drinks.getId());
 
@@ -68,6 +72,15 @@ public class ItemBillAdapter extends BaseAdapter {
         Picasso.with(context).load(drinks.getImage())
                 .fit()
                 .into(imgDrink);
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BillActivity billActivity = (BillActivity) context;
+                billActivity.EditBill(drinks.getId());
+            }
+        });
+
         return view;
     }
 }

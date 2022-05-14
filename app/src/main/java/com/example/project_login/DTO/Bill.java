@@ -1,13 +1,18 @@
 package com.example.project_login.DTO;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class Bill implements Parcelable, Comparator<Bill> {
     String table;
@@ -58,9 +63,9 @@ public class Bill implements Parcelable, Comparator<Bill> {
         this.table = table;
         this.time = time;
         this.isPayment = isPayment;
-        this.listDrinks = listDrinks;
-        this.listQuantity = listQuantity;
-        this.UpDateTotal();
+        this.listDrinks = new ArrayList<>(listDrinks);
+        this.listQuantity = new ArrayList<>(listQuantity);
+        this.UpdateTotal();
     }
 
     public void AddNewDrinks(Drinks drinks, Integer quantity){
@@ -81,7 +86,43 @@ public class Bill implements Parcelable, Comparator<Bill> {
         this.total += (drinks.getPrice() * quantity);
     }
 
-    public void UpDateTotal(){
+    public void UpdateQuantity(Drinks drinks, Integer quantity){
+
+        int pos = -1;
+        for(int i=0; i<listDrinks.size(); ++i)
+        {
+            if(listDrinks.get(i).getId().equals(drinks.getId())){
+                pos = i;
+                break;
+            }
+        }
+
+        if(pos == -1 && quantity <= 0){
+            return;
+        }
+
+        if(pos == -1 && quantity > 0){
+            AddNewDrinks(drinks, quantity);
+            return;
+        }
+
+        if(pos != -1 && quantity >= listQuantity.get(pos)){
+            AddNewDrinks(drinks, quantity - listQuantity.get(pos));
+            return;
+        }
+
+        //pos != -1 && quantity < listQuantity.get
+        if(quantity <= 0){
+            listQuantity.remove(pos);
+            listDrinks.remove(listDrinks.get(pos));
+        } else {
+            listQuantity.set(pos, quantity);
+        }
+
+        this.UpdateTotal();
+    }
+
+    public void UpdateTotal(){
         this.total = 0;
         for(int i=0; i<listDrinks.size(); ++i){
             this.total += ( listDrinks.get(i).getPrice() * listQuantity.get(i) );

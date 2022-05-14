@@ -1,5 +1,6 @@
 package com.example.project_login.Activities.Bill;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,10 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project_login.Activities.Order.MenuOrderActivity;
+import com.example.project_login.Activities.Order.OrderActivity;
 import com.example.project_login.Adapter.ItemBillAdapter;
 import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DAO.TableDAO;
 import com.example.project_login.DTO.Bill;
+import com.example.project_login.DTO.Drinks;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.R;
 import com.google.firebase.database.DataSnapshot;
@@ -22,9 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class BillActivity extends AppCompatActivity {
-    String billID = "", tableID = "";
+    String billID = "", tableID = "", tableName = "";
     Button btnBack;
     Button btnPayment;
     ListView lvBill;
@@ -43,7 +48,6 @@ public class BillActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bill);
 
         Init();
-        LoadData();
     }
 
     private void Init() {
@@ -72,7 +76,6 @@ public class BillActivity extends AppCompatActivity {
                 tableID = tableID + temp.charAt(i);
             }
         }
-
     }
 
     private void LoadData() {
@@ -81,6 +84,10 @@ public class BillActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 billData = snapshot.getValue(Bill.class);
+
+                if(billData == null){
+                    finish();
+                }
 
                 if(billData.listDrinks.size()<=0 || billData.listQuantity.size()<=0){
                     itemBillAdapter.notifyDataSetChanged();
@@ -94,7 +101,8 @@ public class BillActivity extends AppCompatActivity {
 
                 lvBill.setAdapter(itemBillAdapter);
 
-                txtTitle.setText("Hóa đơn bàn: " + billData.getTable());
+                tableName = billData.getTable();
+                txtTitle.setText("Hóa đơn bàn: " + tableName);
                 txtTime.setText(billData.getTime());
 
                 DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
@@ -149,7 +157,22 @@ public class BillActivity extends AppCompatActivity {
         btnPayment.setText("Đã thanh toán");
     }
 
+    public void EditBill(String drinksID){
+        Intent intent = new Intent(BillActivity.this, OrderActivity.class);
+        Bundle b = new Bundle();
+        b.putString("tableID/tableName/drinksID", tableID + "/" + tableName + "/" +drinksID);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
     public void btnbBack_Click(View view) {
         finish();
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        LoadData();
+    }
+
 }

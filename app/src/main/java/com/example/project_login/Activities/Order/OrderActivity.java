@@ -41,7 +41,6 @@ public class OrderActivity extends AppCompatActivity {
 
     String drinksID = "", billID = "", tableID = "", tableName = "";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +111,13 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 bill = snapshot.getValue(Bill.class);
+
+                for(int i=0; i<bill.listDrinks.size(); ++i){
+                    if(bill.listDrinks.get(i).getId().equals(drinksID)){
+                        txtQuantity.setText(bill.listQuantity.get(i).toString());
+                        return;
+                    }
+                }
             }
 
             @Override
@@ -138,9 +144,9 @@ public class OrderActivity extends AppCompatActivity {
                 change += 1;
                 continue;
             }
-            if(change == 0)
+            if(change == 0) {
                 tableID = tableID + temp.charAt(i);
-            else if(change == 1){
+            } else if(change == 1){
                 tableName = tableName + temp.charAt(i);
             } else {
                 drinksID = drinksID + temp.charAt(i);
@@ -150,10 +156,6 @@ public class OrderActivity extends AppCompatActivity {
 
     public void btnOrder_Click(View view) {
         Integer quantity = Integer.parseInt( (String) txtQuantity.getText() );
-        if(quantity <= 0) {
-            Toast.makeText(this, "Hãy chọn số lượng trước", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         SimpleDateFormat formatter=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         Date currentTime = Calendar.getInstance().getTime();
@@ -167,12 +169,20 @@ public class OrderActivity extends AppCompatActivity {
             bill = new Bill(table.getIdBill(), tableName, time);
         }
 
-        bill.AddNewDrinks(drinks, quantity);
+        bill.UpdateQuantity(drinks, quantity);
 
-        BillDAO.addOrUpdate(bill.getId(), bill);
+        if(bill.listQuantity.size() > 0) {
+            BillDAO.addOrUpdate(bill.getId(), bill);
+        } else {
+            //cap nhat ban khong co nguoi ngoi
+            table.setStatus("no");
+            TableDAO.update(table, OrderActivity.this);
+
+            //xoa bill
+            BillDAO.delete(bill.getId(), OrderActivity.this);
+        }
 
         finish();
-
     }
 
     public void btnBack_Click(View view) {
