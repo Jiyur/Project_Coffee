@@ -8,10 +8,13 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <ImageButton
+
+
+    <ImageView
         android:id="@+id/drink_img"
         android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:background="#8F8A89"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_name"

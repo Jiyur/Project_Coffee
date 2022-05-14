@@ -91,12 +91,11 @@ public class DrinkDAO {
         });
         builder.create().show();
     }
-    public static void update(Drinks drink, Context context){
+    public static void update(String id, String name, Integer price,String uri, Context context){
         HashMap<String, Object> postValues = new HashMap<>();
-        postValues.put(drink.getId()+"/category", drink.getCategory());
-        postValues.put(drink.getId()+"/img", drink.getImage());
-        postValues.put(drink.getId()+"/price", drink.getPrice());
-        postValues.put(drink.getId()+"/name", drink.getPrice());
+        postValues.put(id+"/image", uri);
+        postValues.put(id+"/price", price);
+        postValues.put(id+"/name", name);
         myDatabase.updateChildren(postValues, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {

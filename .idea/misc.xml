@@ -22,6 +22,8 @@
         <entry key="..\:/Project_Coffee/app/src/main/res/layout-v31/activity_login.xml" value="0.12771739130434784" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout-v31/dialog_add_table.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout-v31/dialog_edit_table.xml" value="0.1" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_add_category.xml" value="0.1796875" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_add_categrory.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_add_drink.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_add_staff.xml" value="0.1796875" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/activity_drink_by_category.xml" value="0.14130434782608695" />
@@ -49,7 +51,7 @@
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/list_table_item.xml" value="0.14130434782608695" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/login_tab_fragment.xml" value="0.1621376811594203" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/menu_category.xml" value="0.14130434782608695" />
-        <entry key="..\:/Project_Coffee/app/src/main/res/layout/menu_category_item.xml" value="0.12" />
+        <entry key="..\:/Project_Coffee/app/src/main/res/layout/menu_category_item.xml" value="0.14666666666666667" />
         <entry key="..\:/Project_Coffee/app/src/main/res/layout/signup_tab_fragment.xml" value="0.1" />
         <entry key="..\:/Project_Coffee/app/src/main/res/menu/a.xml" value="0.1796875" />
         <entry key="..\:/Project_Coffee/app/src/main/res/menu/menu_context_table.xml" value="0.1796875" />
