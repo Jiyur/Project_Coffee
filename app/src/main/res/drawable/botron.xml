@@ -2,14 +2,11 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#FFFFFF"/>
     <solid
-        android:color="@color/background_color" >
+        android:color="#ffd047" >
     </solid>
 
     <!-- đặt thuộc tính màu và độ rộng của đường viền -->
-    <stroke
-        android:width="0.1dp"
-        android:color="@android:color/black" >
-    </stroke>
+
 
     <!-- các thuộc tính căn chỉnh-->
     <padding

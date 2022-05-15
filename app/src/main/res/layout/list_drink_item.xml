@@ -2,35 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginRight="30dp"
-    android:background="@drawable/vien"
+    android:background="@color/white"
     android:gravity="center">
-    <ImageView
-        android:id="@+id/drink_img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
 
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/background_color">
-        <TextView
-            android:layout_width="wrap_content"
+        android:background="@color/white">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp">
+            <ImageView
+                android:id="@+id/drink_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
             android:id="@+id/name_txt"
-            android:text="name"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/price_txt"
-            android:text="pride"
-            android:layout_marginBottom="10dp"/>
-    </LinearLayout>
+            android:layout_gravity="bottom"
+            android:layout_marginTop="5dp"
+            android:background="#99141414"
+            android:paddingLeft="10dp"
+            android:textAllCaps="true"
+            android:text="name"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+
+    </FrameLayout>
+    <TextView
+        android:background="@drawable/rounded_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/price_txt"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:padding="2dp"
+        android:textColor="@color/black"
+        android:text="price"
+        />
 </LinearLayout>

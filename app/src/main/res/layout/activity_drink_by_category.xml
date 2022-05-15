@@ -10,7 +10,7 @@
         android:id="@+id/listDrink_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brown_800"
+        android:background="#ffca2b"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
