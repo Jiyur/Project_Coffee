@@ -147,10 +147,7 @@ public class table_management extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent = new Intent(table_management.this, HomePageActivity.class);
-                startActivity(intent);
-                finish();
-//                onBackPressed();
+                onBackPressed();
                 break;
             case R.id.add_item:
                 add_table();

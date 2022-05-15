@@ -29,6 +29,7 @@ import com.example.project_login.Adapter.listStaffAdapter;
 import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,7 +45,7 @@ public class management_staff extends AppCompatActivity {
     ListView listView;
     List<User> listnv;
     listStaffAdapter adapter;
-    Button add_btn;
+    FloatingActionButton add_btn;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -63,7 +63,7 @@ public class ItemBillAdapter extends BaseAdapter {
         ImageView imgDrink = (ImageView) view.findViewById(R.id.imageviewdrink);
         Button btnEdit = (Button) view.findViewById(R.id.buttonedit);
 
-        txtName.setText(drinks.getId());
+        txtName.setText(drinks.getName());
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         txtQuantity.setText(decimalFormat.format(quantity));

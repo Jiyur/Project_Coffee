@@ -28,31 +28,31 @@
             android:text="All"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/buttoncoffee"
             android:text="Coffee"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/buttonjuice"
             android:text="Juice"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/buttontea"
             android:text="Tea"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/buttonother"
             android:text="Other"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout

@@ -17,4 +17,5 @@
     <color name="lightWhite">#f2f4fc</color>
     <color name="brown_800">#4e342e</color>
     <color name="background_color">#ffce8c</color>
+    <color name="toolbar_color">#ffca2b</color>
 </resources>

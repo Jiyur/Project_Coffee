@@ -77,7 +77,7 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 drinks = snapshot.getValue(Drinks.class);
-                txtName.setText(drinks.getId());
+                txtName.setText(drinks.getName());
                 Picasso.with(OrderActivity.this).load(drinks.getImage())
                         .fit()
                         .into(imgDrinks);

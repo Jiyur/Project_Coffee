@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list_staff"
+    android:background="@color/white"
     tools:context=".Activities.StaffManagement.management_staff">
     <ListView
         android:id="@+id/list_staff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:divider="@drawable/separator_line"
@@ -27,7 +27,7 @@
         android:id="@+id/listStaff_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brown_800"
+        android:background="@color/toolbar_color"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,13 +38,12 @@
         app:layout_constraintVertical_bias="0.0"
         app:title="Employee manager"/>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:onClick="addOnclick"
         android:id="@+id/add_btn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/circle"
-        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_item_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.948"

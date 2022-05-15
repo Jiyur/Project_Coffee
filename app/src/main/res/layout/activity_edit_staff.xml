@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:background="@color/brown_800"
+        android:background="@color/toolbar_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -118,7 +118,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_birth"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="199dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -141,7 +140,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_pass"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -165,7 +163,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_phone"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -188,7 +185,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_full_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

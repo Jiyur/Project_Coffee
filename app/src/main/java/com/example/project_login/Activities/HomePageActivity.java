@@ -60,7 +60,7 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        final com.google.android.material.card.MaterialCardView mapMaterialCardView = findViewById(R.id.mapItem);
+        final com.google.android.material.card.MaterialCardView mapMaterialCardView = findViewById(R.id.staffManagerItem);
         mapMaterialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

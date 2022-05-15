@@ -62,7 +62,7 @@ public class ItemMenuOrderAdapter extends BaseAdapter {
         ImageView imgDrink = (ImageView) view.findViewById(R.id.drinks_image);
         Button btnOrder = (Button) view.findViewById(R.id.buttonorder);
 
-        txtName.setText(drinks.getId());
+        txtName.setText(drinks.getName());
         txtCategory.setText("Category:   " + drinks.getCategory());
         txtPrice.setText("Price:   " + drinks.getPrice().toString() +"Đ");
 
