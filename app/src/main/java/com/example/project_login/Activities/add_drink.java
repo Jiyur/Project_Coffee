@@ -22,6 +22,7 @@ import com.example.project_login.R;
 import com.example.project_login.databinding.ActivityImageUploadBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,6 +39,7 @@ public class add_drink extends AppCompatActivity {
     TextInputEditText name_txt, price_txt, category_txt;
     ImageView imageView;
     Button addBtn;
+    FloatingActionButton addImageBTN;
     private static int REQUEST_CODE=1000;
     Uri imageUri;
     Drinks drink;
@@ -53,10 +55,11 @@ public class add_drink extends AppCompatActivity {
         category_txt = findViewById(R.id.textInputEditText_category);
         addBtn = findViewById(R.id.add_btn);
         imageView = findViewById(R.id.drink_img);
+        addImageBTN=findViewById(R.id.add_drink_btn);
         category_txt.setText(getIntent().getStringExtra("Category"));
         category_txt.setFocusable(false);
         mDatabase = DrinkDAO.getMyDatabase();
-        imageView.setOnClickListener(new View.OnClickListener() {
+        addImageBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Intent.ACTION_PICK);
@@ -110,6 +113,7 @@ public class add_drink extends AppCompatActivity {
                                         drink = new Drinks(category_txt.getText().toString(), name_txt.getText().toString(),
                                                 uri.toString(), Integer.parseInt(price_txt.getText().toString()));
                                         DrinkDAO.insert(add_drink.this, drink);
+                                        add_drink.super.onBackPressed();
                                     }
                                 });
 

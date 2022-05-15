@@ -56,7 +56,8 @@ public class DrinkAdapter extends BaseAdapter {
         ImageView drinkImg = view.findViewById(R.id.drink_img);
         Drinks drinks = listDrink.get(i);
         nameDrinkText.setText(drinks.getName());
-        priceDrinkText.setText(String.valueOf(drinks.getPrice()));
+        String price=String.valueOf(drinks.getPrice());
+        priceDrinkText.setText(price);
 
         Glide.with(context).load(drinks.getImage()).override(150, 150).centerCrop().into(drinkImg);
 
