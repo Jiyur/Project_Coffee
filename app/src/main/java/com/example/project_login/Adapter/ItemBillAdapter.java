@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,7 +62,7 @@ public class ItemBillAdapter extends BaseAdapter {
         TextView txtPrice = (TextView) view.findViewById(R.id.textviewprice);
         TextView txtQuantity = (TextView) view.findViewById(R.id.textviewquantity);
         ImageView imgDrink = (ImageView) view.findViewById(R.id.imageviewdrink);
-        Button btnEdit = (Button) view.findViewById(R.id.buttonedit);
+        ImageButton btnEdit = (ImageButton) view.findViewById(R.id.buttonedit);
 
         txtName.setText(drinks.getName());
 

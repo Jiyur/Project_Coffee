@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,7 +61,7 @@ public class ItemMenuOrderAdapter extends BaseAdapter {
         TextView txtCategory = (TextView) view.findViewById(R.id.textviewcategory);
         TextView txtPrice = (TextView) view.findViewById(R.id.textviewprice);
         ImageView imgDrink = (ImageView) view.findViewById(R.id.drinks_image);
-        Button btnOrder = (Button) view.findViewById(R.id.buttonorder);
+        ImageButton btnOrder = (ImageButton) view.findViewById(R.id.button_order);
 
         txtName.setText(drinks.getName());
         txtCategory.setText("Category:   " + drinks.getCategory());

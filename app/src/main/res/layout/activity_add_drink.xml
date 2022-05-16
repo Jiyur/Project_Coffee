@@ -15,8 +15,8 @@
         <ImageView
             android:layout_gravity="center"
             android:id="@+id/drink_img"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:background="#8F8A89"
             android:src="@drawable/dotted"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:hint="Drink Name"
         app:startIconDrawable="@drawable/ic_baseline_local_drink_24">

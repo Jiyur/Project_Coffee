@@ -56,7 +56,6 @@ public class edit_drink extends AppCompatActivity {
         price_txt.setText(String.valueOf(drink.getPrice()));
 
         Glide.with(edit_drink.this).load(drink.getImage()).override(400, 400).centerCrop().into(imageView);
-
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

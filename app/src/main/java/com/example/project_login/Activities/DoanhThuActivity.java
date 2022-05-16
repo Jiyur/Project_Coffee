@@ -75,11 +75,12 @@ public class DoanhThuActivity extends AppCompatActivity {
     public void MonthlyCalc(){
         Date date;
         for (Bill bill:arrayListBill) {
+            if(bill.isPayment())
             try {
-                date=new SimpleDateFormat("dd/MM/yyyy").parse(bill.getTime());
+                date=new SimpleDateFormat("dd-MM-yyyy").parse(bill.getTime());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
                 int month= Integer.parseInt(dateFormat.format(date));
-                Log.e("Month: ",String.valueOf(month));
+
                 switch (month){
                     case 1:
                         RevenueMonthly[0]+=bill.getTotal();

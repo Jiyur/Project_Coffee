@@ -31,6 +31,7 @@
 
 
         <TextView
+            android:fontFamily="@font/pelita"
             android:id="@+id/name_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
 
     </FrameLayout>
     <TextView
+        android:fontFamily="@font/pelita_nor"
         android:background="@drawable/rounded_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

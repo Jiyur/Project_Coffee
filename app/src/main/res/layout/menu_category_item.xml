@@ -22,6 +22,7 @@
 
 
     <TextView
+        android:fontFamily="@font/pelita"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

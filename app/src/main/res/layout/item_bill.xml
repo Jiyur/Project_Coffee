@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="120dp"
     android:background="@drawable/botron"
-    android:weightSum="10">
+    android:weightSum="10"
+    android:layout_margin="10dp">
     <LinearLayout
         android:layout_margin="15dp"
         android:layout_weight="3"
@@ -12,15 +13,15 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageviewdrink"
+
             android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="100dp">
         </ImageView>
     </LinearLayout>
     <LinearLayout
+        android:layout_marginStart="10dp"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
         android:layout_weight="6"
         android:layout_width="0dp"
         android:layout_height="wrap_content">
@@ -59,10 +60,10 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
+    <ImageButton
         android:id="@+id/buttonedit"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:background="@drawable/edit"/>
 
