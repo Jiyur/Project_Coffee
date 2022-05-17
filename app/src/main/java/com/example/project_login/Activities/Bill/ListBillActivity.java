@@ -46,7 +46,7 @@ import java.util.Collections;
 import java.util.Date;
 
 public class ListBillActivity extends AppCompatActivity {
-    TextView txtTittle;
+    TextView txtTittle, sum_txt;
     ListView lvBill;
     Toolbar toolbar;
     ItemInfoAdapter myAdapter;
@@ -59,12 +59,14 @@ public class ListBillActivity extends AppCompatActivity {
     int to_day = c.get(Calendar.DAY_OF_MONTH);
     int to_month = c.get(Calendar.MONTH);
     int to_year = c.get(Calendar.YEAR);
+    int sum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_bill);
         txtTittle = (TextView) findViewById(R.id.textviewtittle);
+        sum_txt = findViewById(R.id.sum_txt);
         lvBill = (ListView) findViewById(R.id.listviewBillInfo);
         arrayListBill=new ArrayList<Bill>();
         myAdapter=new ItemInfoAdapter(this,R.layout.bill_info_layout,arrayListBill);
@@ -101,9 +103,11 @@ public class ListBillActivity extends AppCompatActivity {
 
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Bill billData = postSnapshot.getValue(Bill.class);
+                    sum += Integer.parseInt(billData.getTotal().toString());
                     arrayListBill.add(billData);
                     Log.e("bill",billData.getId());
                 }
+                sum_txt.setText(String.valueOf("Tổng doanh thu: " + sum + " VND"));
                 myAdapter.notifyDataSetChanged();
             }
 
@@ -211,10 +215,12 @@ public class ListBillActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayListBill.clear();
+                sum = 0;
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Bill bill = postSnapshot.getValue(Bill.class);
                     getBill(from_day, from_month, from_year, to_day, to_month, to_year, bill);
                 }
+                sum_txt.setText(String.valueOf("Tổng doanh thu: " +sum + " VND"));
                 myAdapter.notifyDataSetChanged();
             }
 
@@ -239,6 +245,7 @@ public class ListBillActivity extends AppCompatActivity {
             if(from_month + 1  <= bill_month && bill_month  <= to_month + 1){
                 if(from_day <= bill_day && bill_day <= to_day){
                     arrayListBill.add(bill);
+                    sum += Integer.parseInt(bill.getTotal().toString());
                 }
             }
         }
