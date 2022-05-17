@@ -100,10 +100,12 @@ public class ListBillActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayListBill.clear();
-
+                sum = 0;
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Bill billData = postSnapshot.getValue(Bill.class);
-                    sum += Integer.parseInt(billData.getTotal().toString());
+                    if(billData.isPayment()){
+                        sum += Integer.parseInt(billData.getTotal().toString());
+                    }
                     arrayListBill.add(billData);
                     Log.e("bill",billData.getId());
                 }
@@ -245,7 +247,9 @@ public class ListBillActivity extends AppCompatActivity {
             if(from_month + 1  <= bill_month && bill_month  <= to_month + 1){
                 if(from_day <= bill_day && bill_day <= to_day){
                     arrayListBill.add(bill);
-                    sum += Integer.parseInt(bill.getTotal().toString());
+                    if(bill.isPayment()){
+                        sum += Integer.parseInt(bill.getTotal().toString());
+                    }
                 }
             }
         }
