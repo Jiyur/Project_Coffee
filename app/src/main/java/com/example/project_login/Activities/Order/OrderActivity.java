@@ -46,11 +46,11 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-//        imgDrinks = findViewById(R.id.imageviewdrink);
-//        btnadd = findViewById(R.id.buttonadd);
-//        btnMinus = findViewById(R.id.buttonminus);
-//        txtName = findViewById(R.id.textviewname);
-//        txtQuantity = findViewById(R.id.textviewquantity);
+        imgDrinks = findViewById(R.id.imageviewdrink);
+        btnadd = findViewById(R.id.buttonadd);
+        btnMinus = findViewById(R.id.buttonminus);
+        txtName = findViewById(R.id.textviewname);
+        txtQuantity = findViewById(R.id.textviewquantity);
         toolbar = findViewById(R.id.orderDrink_toolbar);
 
 //        drinksID = getIntent().getStringExtra("drinkID");
@@ -59,7 +59,7 @@ public class OrderActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Init();
+        Init();
         LoadData();
         AddEvents();
     }
@@ -141,11 +141,11 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void Init() {
-        imgDrinks = findViewById(R.id.imageviewdrink);
-        btnadd = findViewById(R.id.buttonadd);
-        btnMinus = findViewById(R.id.buttonminus);
-        txtName = findViewById(R.id.textviewname);
-        txtQuantity = findViewById(R.id.textviewquantity);
+//        imgDrinks = findViewById(R.id.imageviewdrink);
+//        btnadd = findViewById(R.id.buttonadd);
+//        btnMinus = findViewById(R.id.buttonminus);
+//        txtName = findViewById(R.id.textviewname);
+//        txtQuantity = findViewById(R.id.textviewquantity);
 
         String temp = null;
         Bundle b = getIntent().getExtras();

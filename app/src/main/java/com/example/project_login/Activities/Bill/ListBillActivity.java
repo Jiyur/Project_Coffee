@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.project_login.Activities.Global;
 import com.example.project_login.Adapter.ItemInfoAdapter;
 import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DTO.Bill;
@@ -61,6 +62,7 @@ public class ListBillActivity extends AppCompatActivity {
                 intent.putExtra("bill", "bill");
                 intent.putExtras(b);
                 startActivity(intent);
+                Global.checkBill = true;
             }
         });
 

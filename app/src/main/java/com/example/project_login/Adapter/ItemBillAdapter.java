@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.project_login.Activities.Bill.BillActivity;
+import com.example.project_login.Activities.Global;
 import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.DTO.Drinks;
 import com.example.project_login.R;
@@ -69,6 +70,11 @@ public class ItemBillAdapter extends BaseAdapter {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         txtQuantity.setText(decimalFormat.format(quantity));
         txtPrice.setText(decimalFormat.format(drinks.getPrice()));
+        if(Global.checkBill){
+            btnEdit.setVisibility(View.INVISIBLE);
+        }else{
+            btnEdit.setVisibility(View.VISIBLE);
+        }
 
         Picasso.with(context).load(drinks.getImage())
                 .fit()

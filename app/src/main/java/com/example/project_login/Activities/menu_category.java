@@ -26,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.project_login.Activities.Order.MenuOrderActivity;
+import com.example.project_login.Activities.Order.OrderActivity;
 import com.example.project_login.Adapter.MenuCategoryAdapter;
 import com.example.project_login.DAO.CategoryDAO;
 import com.example.project_login.DAO.DrinkDAO;
@@ -60,7 +62,6 @@ public class menu_category extends AppCompatActivity {
     Uri imageUri;
     StorageReference storageReference;
     ImageView imageView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,8 +81,12 @@ public class menu_category extends AppCompatActivity {
                     Category category = (Category) adapterView.getAdapter().getItem(i);
                     Intent intent = new Intent(menu_category.this, drink_by_category.class);
                     intent.putExtra("Category", category.getCatName());
-                    intent.putExtra("tableID", getIntent().getStringExtra("tableID"));
-                    intent.putExtra("tableName", getIntent().getStringExtra("tableName"));
+//                    intent.putExtra("tableID", getIntent().getStringExtra("tableID"));
+//                    intent.putExtra("tableName", getIntent().getStringExtra("tableName"));
+                    Bundle b = new Bundle();
+                    b.putString("tableID/tableName", getIntent().getStringExtra("tableID") + "/"
+                            +getIntent().getStringExtra("tableName") );
+                    intent.putExtras(b);
                     startActivity(intent);
                 }else {
                     Category category = (Category) adapterView.getAdapter().getItem(i);
@@ -220,7 +225,7 @@ public class menu_category extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Edit();
+                Edit(dialog);
             }
         });
 
@@ -228,7 +233,7 @@ public class menu_category extends AppCompatActivity {
         dialog.show();
     }
 
-    public void Edit(){
+    public void Edit(Dialog dialog){
         if(imageUri == null){
             Toast.makeText(this, "You must fill in all the information before editing", Toast.LENGTH_SHORT).show();
         }else{
@@ -253,6 +258,7 @@ public class menu_category extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             CategoryDAO.update(menu_category.this, category.getCatName(), uri.toString());
+                                            dialog.dismiss();
 //                                        menu_category.super.onBackPressed();
                                         }
                                     });

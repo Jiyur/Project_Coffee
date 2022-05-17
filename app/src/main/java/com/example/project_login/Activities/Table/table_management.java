@@ -254,15 +254,15 @@ public class table_management extends AppCompatActivity {
         order_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(table_management.this, com.example.project_login.Activities.menu_category.class);
-                Bundle b = new Bundle();
-                b.putString("tableID/tableName", tableList.get(pos).getIdTable() + "/" + ((Integer) (pos + 1)).toString() );
-                intent.putExtras(b);
-                startActivity(intent);
 //                Intent intent = new Intent(table_management.this, com.example.project_login.Activities.menu_category.class);
-//                intent.putExtra("tableID", tableList.get(pos).getIdTable());
-//                intent.putExtra("tableName", ((Integer) (pos + 1)).toString());
+//                Bundle b = new Bundle();
+//                b.putString("tableID/tableName", tableList.get(pos).getIdTable() + "/" + ((Integer) (pos + 1)).toString() );
+//                intent.putExtras(b);
 //                startActivity(intent);
+                Intent intent = new Intent(table_management.this, com.example.project_login.Activities.menu_category.class);
+                intent.putExtra("tableID", tableList.get(pos).getIdTable());
+                intent.putExtra("tableName", ((Integer) (pos + 1)).toString());
+                startActivity(intent);
                 Global.check = true;
                 dialog.dismiss();
             }
@@ -275,6 +275,7 @@ public class table_management extends AppCompatActivity {
                     Toast.makeText(table_management.this, "Empty table", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
+                    Global.checkBill = false;
                     Intent intent = new Intent(table_management.this, BillActivity.class);
                     Bundle b = new Bundle();
                     b.putString("tableID/billID", tableList.get(pos).getIdTable() + "/" + tableList.get(pos).getIdBill());

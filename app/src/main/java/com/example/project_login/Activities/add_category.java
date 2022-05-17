@@ -96,7 +96,7 @@ public class add_category extends AppCompatActivity {
     }
 
     public void add(){
-        if(imageUri == null || category.equals("")){
+        if(imageUri == null){
             Toast.makeText(this, "You must fill in all the information before adding", Toast.LENGTH_SHORT).show();
         }else{
             progressDialog=new ProgressDialog(this);

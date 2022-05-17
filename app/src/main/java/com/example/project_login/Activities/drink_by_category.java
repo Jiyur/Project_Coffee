@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_login.Activities.Bill.BillActivity;
+import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.Activities.Order.OrderActivity;
 import com.example.project_login.Activities.Table.table_management;
 import com.example.project_login.Adapter.DrinkAdapter;
@@ -60,8 +61,7 @@ public class drink_by_category extends AppCompatActivity {
     DrinkAdapter drinkAdapter;
     Drinks drink;
     String category;
-    String tableId = "";
-    String tableName = "";
+    String tableID = "", tableName = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,26 +69,53 @@ public class drink_by_category extends AppCompatActivity {
         mDatabase = DrinkDAO.getMyDatabase();
         toolbar = findViewById(R.id.listDrink_toolbar);
         gridView = findViewById(R.id.drink_gridView);
-        tableId = getIntent().getStringExtra("tableID");
-        tableName = getIntent().getStringExtra("tableName");
+//        tableId = getIntent().getStringExtra("tableID");
+//        tableName = getIntent().getStringExtra("tableName");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(Global.check){
+            Init();
+        }
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(Global.check){
                     Drinks drink = (Drinks) adapterView.getAdapter().getItem(i);
-                    Intent intent = new Intent(drink_by_category.this, com.example.project_login.Activities.Order.OrderActivity.class);
-                    intent.putExtra("tableID", tableId);
-                    intent.putExtra("tableName", tableName);
-                    intent.putExtra("drinkID", drink.getId());
+//                    Intent intent = new Intent(drink_by_category.this, com.example.project_login.Activities.Order.OrderActivity.class);
+//                    intent.putExtra("tableID", tableId);
+//                    intent.putExtra("tableName", tableName);
+//                    intent.putExtra("drinkID", drink.getId());
+//                    startActivity(intent);
+                    Intent intent = new Intent(drink_by_category.this, OrderActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("tableID/tableName/drinksID", tableID + "/" + tableName + "/" +drink.getId());
+                    intent.putExtras(b);
                     startActivity(intent);
                 }
             }
         });
 
         data();
+    }
+
+    public void Init(){
+        Bundle b = getIntent().getExtras();
+        String temp = null;
+        if(b != null)
+            temp = b.getString("tableID/tableName");
+        boolean change = false;
+        for(int i=0; i<temp.length(); ++i){
+            if(temp.charAt(i) == '/'){
+                change=true;
+                continue;
+            }
+            if(change){
+                tableName = tableName + temp.charAt(i);
+            } else {
+                tableID = tableID + temp.charAt(i);
+            }
+        }
     }
 
     public void data(){
