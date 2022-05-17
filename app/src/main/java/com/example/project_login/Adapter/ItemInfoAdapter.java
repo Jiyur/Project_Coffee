@@ -1,6 +1,7 @@
 package com.example.project_login.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.example.project_login.DTO.Bill;
 import com.example.project_login.R;
@@ -55,6 +57,8 @@ public class ItemInfoAdapter extends ArrayAdapter<Bill> {
         }
         else{
             billPayment.setText("Chưa thanh toán");
+            billPayment.setBackground(ContextCompat.getDrawable(context,R.drawable.botron_xanh));
+
         }
         return customView;
 
