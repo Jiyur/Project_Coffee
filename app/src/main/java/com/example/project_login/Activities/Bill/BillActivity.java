@@ -3,6 +3,7 @@ package com.example.project_login.Activities.Bill;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,7 +47,6 @@ public class BillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill);
-
         Init();
     }
 
@@ -55,7 +55,6 @@ public class BillActivity extends AppCompatActivity {
         txtNotification = (TextView) findViewById(R.id.textviewnotification);
         txtTotal = (TextView) findViewById(R.id.textviewtotal);
         btnPayment = (Button) findViewById(R.id.buttonpayment);
-        btnBack = (Button) findViewById(R.id.buttonback);
         txtTitle = (TextView) findViewById(R.id.textviewtittle);
         txtTime = (TextView) findViewById(R.id.textviewtime);
 
@@ -153,6 +152,7 @@ public class BillActivity extends AppCompatActivity {
         //Toast.makeText(BillActivity.this, "Thanh toán thành công!", Toast.LENGTH_LONG).show();
 
         tableData.setStatus("no");
+        tableData.setIdBill("");
         TableDAO.update(tableData,BillActivity.this);
         btnPayment.setText("Đã thanh toán");
     }

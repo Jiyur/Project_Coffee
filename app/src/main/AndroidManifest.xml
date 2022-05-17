@@ -80,7 +80,7 @@
         <activity
             android:name=".Activities.LoginSignup.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing" >
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,9 +89,7 @@
         </activity>
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

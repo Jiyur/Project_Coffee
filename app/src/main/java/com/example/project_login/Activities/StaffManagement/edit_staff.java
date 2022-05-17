@@ -156,4 +156,12 @@ public class edit_staff extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(edit_staff.this,management_staff.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
 }

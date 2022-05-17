@@ -4,9 +4,11 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,9 +34,8 @@ import java.util.Date;
 
 public class OrderActivity extends AppCompatActivity {
     ImageView imgDrinks;
-    Button btnadd, btnMinus;
-    TextView txtName, txtQuantity;
-
+    TextView txtName, txtQuantity, btnadd, btnMinus;
+    Toolbar toolbar;
     Drinks drinks = new Drinks();
     Table table = new Table();
     Bill bill = new Bill();
@@ -45,8 +46,20 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+//        imgDrinks = findViewById(R.id.imageviewdrink);
+//        btnadd = findViewById(R.id.buttonadd);
+//        btnMinus = findViewById(R.id.buttonminus);
+//        txtName = findViewById(R.id.textviewname);
+//        txtQuantity = findViewById(R.id.textviewquantity);
+        toolbar = findViewById(R.id.orderDrink_toolbar);
 
-        Init();
+//        drinksID = getIntent().getStringExtra("drinkID");
+//        tableID = getIntent().getStringExtra("tableID");
+//        tableName = getIntent().getStringExtra("tableName");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Init();
         LoadData();
         AddEvents();
     }
@@ -128,11 +141,11 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void Init() {
-        imgDrinks = (ImageView) findViewById(R.id.imageviewdrink);
-        btnadd = (Button) findViewById(R.id.buttonadd);
-        btnMinus = (Button) findViewById(R.id.buttonminus);
-        txtName = (TextView) findViewById(R.id.textviewname);
-        txtQuantity = (TextView) findViewById(R.id.textviewquantity);
+        imgDrinks = findViewById(R.id.imageviewdrink);
+        btnadd = findViewById(R.id.buttonadd);
+        btnMinus = findViewById(R.id.buttonminus);
+        txtName = findViewById(R.id.textviewname);
+        txtQuantity = findViewById(R.id.textviewquantity);
 
         String temp = null;
         Bundle b = getIntent().getExtras();
@@ -185,7 +198,16 @@ public class OrderActivity extends AppCompatActivity {
         finish();
     }
 
-    public void btnBack_Click(View view) {
-        finish();
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

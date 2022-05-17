@@ -98,6 +98,11 @@ public class staff_profile extends AppCompatActivity {
             case R.id.changePass_item:
                 changePassWord(Gravity.CENTER);
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -143,17 +148,16 @@ public class staff_profile extends AppCompatActivity {
         windowAttributes.gravity = center;
         window.setAttributes(windowAttributes);
 
-        if(Gravity.BOTTOM == center){
-            dialog.setCancelable(true);
-        }else{
-            dialog.setCancelable(false);
-        }
+//        if(Gravity.BOTTOM == center){
+//            dialog.setCancelable(true);
+//        }else{
+//            dialog.setCancelable(false);
+//        }
 
         TextInputEditText pass_txt = dialog.findViewById(R.id.pass_txt);
         TextInputEditText newPass_txt = dialog.findViewById(R.id.newPass_txt);
         TextInputEditText repeatPass_txt = dialog.findViewById(R.id.repeatPass_txt);
         Button change_btn = dialog.findViewById(R.id.change_btn);
-        Button cancel_btn = dialog.findViewById(R.id.cancell_btn);
 
         change_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,13 +190,13 @@ public class staff_profile extends AppCompatActivity {
             }
         });
 
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                Toast.makeText(staff_profile.this, "Cancel", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        cancel_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.dismiss();
+//                Toast.makeText(staff_profile.this, "Cancel", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         dialog.show();
     }
 }

@@ -80,6 +80,21 @@ public class CategoryDAO {
         builder.create().show();
     }
 
+    public static void update( Context context, String catName, String uri){
+        HashMap<String, Object> postValues = new HashMap<>();
+        postValues.put(catName + "/img", uri);
+        myDatabase.updateChildren(postValues, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if(error == null){
+                    Toast.makeText(context, "Edit category success", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "Edit category fail", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     public static DatabaseReference getMyDatabase() {
         return myDatabase;
     }

@@ -5,92 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".Activities.Order.OrderActivity">
 
-    tools:context=".Activities.Order.OrderActivity"
-    android:weightSum="10"
-    android:background="@color/background_color">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/orderDrink_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_color"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:title="Order" />
+
     <ImageView
         android:id="@+id/imageviewdrink"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"/>
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"/>
     <TextView
         android:id="@+id/textviewname"
         android:text="name"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="30dp"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:weightSum="7"
-        android:orientation="horizontal">
-        <View
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-        <Button
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
             android:id="@+id/buttonminus"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@drawable/custom_button_payment"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botron"
             android:textSize="30dp"
-            android:text="-"/>
+            android:text="-"
+            android:gravity="center"
+            android:layout_margin="20dp"/>
         <TextView
             android:id="@+id/textviewquantity"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
             android:textSize="30dp"
-            android:text="0"/>
-        <Button
+            android:text="1"/>
+        <TextView
             android:id="@+id/buttonadd"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@drawable/custom_button_payment"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botron"
             android:textSize="30dp"
-            android:text="+"/>
-        <View
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:text="+"
+            android:gravity="center"
+            android:layout_margin="20dp"/>
+
     </LinearLayout>
-<!--    <View-->
-<!--        android:layout_weight="1"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"/>-->
+
     <Button
         android:id="@+id/buttonorder"
         android:onClick="btnOrder_Click"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="Order"
         android:textColor="#FFEB3B"
         android:textSize="20dp"
-        android:background="@drawable/custom_button_payment"/>
+        android:background="@drawable/botron"
+        android:layout_margin="20dp"/>
 
-    <Button
-        android:id="@+id/buttonback"
-        android:onClick="btnBack_Click"
-        android:text="Quay lại"
-        android:textSize="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:textColor="#F44336"
-        android:background="@drawable/custom_button_payment"
-        android:layout_gravity="center"
-        tools:ignore="MissingConstraints"/>
 </LinearLayout>

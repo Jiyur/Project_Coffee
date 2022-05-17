@@ -5,32 +5,50 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project_login.Activities.Bill.BillActivity;
+import com.example.project_login.Activities.Order.OrderActivity;
 import com.example.project_login.Activities.Table.table_management;
 import com.example.project_login.Adapter.DrinkAdapter;
 import com.example.project_login.Adapter.TableAdapter;
+import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DAO.DrinkDAO;
 import com.example.project_login.DAO.TableDAO;
+import com.example.project_login.DTO.Bill;
 import com.example.project_login.DTO.Category;
 import com.example.project_login.DTO.Drinks;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +60,8 @@ public class drink_by_category extends AppCompatActivity {
     DrinkAdapter drinkAdapter;
     Drinks drink;
     String category;
+    String tableId = "";
+    String tableName = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +69,24 @@ public class drink_by_category extends AppCompatActivity {
         mDatabase = DrinkDAO.getMyDatabase();
         toolbar = findViewById(R.id.listDrink_toolbar);
         gridView = findViewById(R.id.drink_gridView);
+        tableId = getIntent().getStringExtra("tableID");
+        tableName = getIntent().getStringExtra("tableName");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(Global.check){
+                    Drinks drink = (Drinks) adapterView.getAdapter().getItem(i);
+                    Intent intent = new Intent(drink_by_category.this, com.example.project_login.Activities.Order.OrderActivity.class);
+                    intent.putExtra("tableID", tableId);
+                    intent.putExtra("tableName", tableName);
+                    intent.putExtra("drinkID", drink.getId());
+                    startActivity(intent);
+                }
+            }
+        });
 
         data();
     }

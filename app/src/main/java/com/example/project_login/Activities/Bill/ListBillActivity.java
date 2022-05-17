@@ -3,15 +3,19 @@ package com.example.project_login.Activities.Bill;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.project_login.Adapter.ItemInfoAdapter;
 import com.example.project_login.DAO.BillDAO;
@@ -30,6 +34,7 @@ public class ListBillActivity extends AppCompatActivity {
 
     TextView txtTittle;
     ListView lvBill;
+    Toolbar toolbar;
     ItemInfoAdapter myAdapter;
     ArrayList<Bill> arrayListBill;
 
@@ -42,6 +47,9 @@ public class ListBillActivity extends AppCompatActivity {
         arrayListBill=new ArrayList<Bill>();
         myAdapter=new ItemInfoAdapter(this,R.layout.bill_info_layout,arrayListBill);
         lvBill.setAdapter(myAdapter);
+        toolbar = findViewById(R.id.listBill_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvBill.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,6 +58,7 @@ public class ListBillActivity extends AppCompatActivity {
                 Intent intent = new Intent(ListBillActivity.this, BillActivity.class);
                 Bundle b = new Bundle();
                 b.putString("tableID/billID", "/"  + bill.getId());
+                intent.putExtra("bill", "bill");
                 intent.putExtras(b);
                 startActivity(intent);
             }
@@ -78,5 +87,15 @@ public class ListBillActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -150,6 +150,7 @@ public class management_staff extends AppCompatActivity {
                 Intent intent = new Intent(management_staff.this, edit_staff.class);
                 intent.putExtra("User", user);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.call_item:
                 ActivityCompat.requestPermissions(management_staff.this, new String[]{Manifest.permission.CALL_PHONE}, 1);

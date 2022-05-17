@@ -3,15 +3,18 @@ package com.example.project_login.Activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.project_login.DAO.CategoryDAO;
 import com.example.project_login.DAO.DrinkDAO;
@@ -32,6 +35,7 @@ public class add_category extends AppCompatActivity {
     ImageView imageView;
     TextInputEditText category_txt;
     Button add_btn;
+    Toolbar toolbar;
     ProgressDialog progressDialog;
     Uri imageUri;
     StorageReference storageReference;
@@ -46,8 +50,14 @@ public class add_category extends AppCompatActivity {
         imageView = findViewById(R.id.category_img);
         category_txt = findViewById(R.id.textInputEditText_category);
         add_btn = findViewById(R.id.add_btn);
+        toolbar = findViewById(R.id.addCategory_toolbar);
+        com.google.android.material.floatingactionbutton.FloatingActionButton add_category_btn
+                = findViewById(R.id.add_category_btn);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        add_category_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Intent.ACTION_PICK);
@@ -55,6 +65,15 @@ public class add_category extends AppCompatActivity {
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });
+
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent=new Intent(Intent.ACTION_PICK);
+//                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(intent,REQUEST_CODE);
+//            }
+//        });
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,40 +96,57 @@ public class add_category extends AppCompatActivity {
     }
 
     public void add(){
-        progressDialog=new ProgressDialog(this);
-        progressDialog.setTitle("Uploading ...");
-        progressDialog.show();
-        SimpleDateFormat format=new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.ENGLISH);
-        Date now =new Date();
-        String fileName=format.format(now);
-        storageReference= FirebaseStorage.getInstance().getReference();
-        storageReference.child("images/"+fileName)
-                .putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        imageView.setImageURI(null);
+        if(imageUri == null || category.equals("")){
+            Toast.makeText(this, "You must fill in all the information before adding", Toast.LENGTH_SHORT).show();
+        }else{
+            progressDialog=new ProgressDialog(this);
+            progressDialog.setTitle("Uploading ...");
+            progressDialog.show();
+            SimpleDateFormat format=new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.ENGLISH);
+            Date now =new Date();
+            String fileName=format.format(now);
+            storageReference= FirebaseStorage.getInstance().getReference();
+            storageReference.child("images/"+fileName)
+                    .putFile(imageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            imageView.setImageURI(null);
 //                        Toast.makeText(edit_drink.this, "Success upload", Toast.LENGTH_SHORT).show();
-                        if(progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        storageReference.child("images/"+fileName).getDownloadUrl()
-                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        category = new Category(uri.toString(), category_txt.getText().toString());
-                                        CategoryDAO.insert(category, add_category.this);
-                                    }
-                                });
+                            if(progressDialog.isShowing())
+                                progressDialog.dismiss();
+                            storageReference.child("images/"+fileName).getDownloadUrl()
+                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            category = new Category(uri.toString(), category_txt.getText().toString());
+                                            CategoryDAO.insert(category, add_category.this);
+                                        }
+                                    });
 
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                if(progressDialog.isShowing())
-                    progressDialog.dismiss();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    if(progressDialog.isShowing())
+                        progressDialog.dismiss();
 //                Toast.makeText(edit_drink.this, "Failed!", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

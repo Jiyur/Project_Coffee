@@ -3,12 +3,14 @@ package com.example.project_login.Activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,6 +39,7 @@ public class edit_drink extends AppCompatActivity {
     TextInputEditText name_txt, price_txt;
     ImageView imageView;
     Button saveBtn;
+    Toolbar toolbar;
     DatabaseReference mDatabase;
     Drinks drink;
     private static int REQUEST_CODE=1000;
@@ -54,6 +57,9 @@ public class edit_drink extends AppCompatActivity {
         drink = (Drinks) bundle.getParcelable("Drink");
         name_txt.setText(drink.getName());
         price_txt.setText(String.valueOf(drink.getPrice()));
+        toolbar = findViewById(R.id.editDrink_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Glide.with(edit_drink.this).load(drink.getImage()).override(400, 400).centerCrop().into(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -86,40 +92,55 @@ public class edit_drink extends AppCompatActivity {
     }
 
     public void Save() {
-        progressDialog=new ProgressDialog(this);
-        progressDialog.setTitle("Uploading ...");
-        progressDialog.show();
-        SimpleDateFormat format=new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.ENGLISH);
-        Date now =new Date();
-        String fileName=format.format(now);
-        storageReference= FirebaseStorage.getInstance().getReference();
-        storageReference.child("images/"+fileName)
-                .putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        imageView.setImageURI(null);
+        if(imageUri == null || name_txt.equals("") || price_txt.equals("")){
+            Toast.makeText(this, "You must fill in all the information before editing", Toast.LENGTH_SHORT).show();
+        }else{
+            progressDialog=new ProgressDialog(this);
+            progressDialog.setTitle("Uploading ...");
+            progressDialog.show();
+            SimpleDateFormat format=new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.ENGLISH);
+            Date now =new Date();
+            String fileName=format.format(now);
+            storageReference= FirebaseStorage.getInstance().getReference();
+            storageReference.child("images/"+fileName)
+                    .putFile(imageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            imageView.setImageURI(null);
 //                        Toast.makeText(edit_drink.this, "Success upload", Toast.LENGTH_SHORT).show();
-                        if(progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        storageReference.child("images/"+fileName).getDownloadUrl()
-                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        DrinkDAO.update(drink.getId(), name_txt.getText().toString()
-                                                , Integer.parseInt(price_txt.getText().toString()), uri.toString(),edit_drink.this);
-                                    }
-                                });
-
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                if(progressDialog.isShowing())
-                    progressDialog.dismiss();
+                            if(progressDialog.isShowing())
+                                progressDialog.dismiss();
+                            storageReference.child("images/"+fileName).getDownloadUrl()
+                                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            DrinkDAO.update(drink.getId(), name_txt.getText().toString()
+                                                    , Integer.parseInt(price_txt.getText().toString()), uri.toString(),edit_drink.this);
+                                        }
+                                    });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    if(progressDialog.isShowing())
+                        progressDialog.dismiss();
 //                Toast.makeText(edit_drink.this, "Failed!", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

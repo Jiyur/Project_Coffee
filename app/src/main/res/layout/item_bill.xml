@@ -2,34 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/botron"
-    android:weightSum="10"
     android:layout_margin="10dp">
-    <LinearLayout
-        android:layout_margin="15dp"
-        android:layout_weight="3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/imageviewdrink"
 
-            android:layout_gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="100dp">
-        </ImageView>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageviewdrink"
+        android:layout_width="80dp"
+        android:layout_height="80dp">
+    </ImageView>
+
     <LinearLayout
         android:layout_marginStart="10dp"
         android:orientation="vertical"
-        android:layout_weight="6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_width="180dp"
+        android:layout_height="match_parent">
         <TextView
             android:text="Tên đồ uống"
             android:textColor="@color/black"
             android:id="@+id/textviewname"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
@@ -37,9 +29,10 @@
             android:text="Gía đồ uống"
             android:textColor="#F44336"
             android:id="@+id/textviewprice"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_margin="3dp"
@@ -48,23 +41,24 @@
             <TextView
                 android:text="Số lượng: "
                 android:textColor="@color/black"
-                android:textSize="17dp"
+                android:textSize="15dp"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/textviewquantity"
-                android:text="0 "
+                android:text="0"
                 android:textColor="@color/purple_700"
-                android:textSize="17dp"
-                android:layout_width="100dp"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
     <ImageButton
         android:id="@+id/buttonedit"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_gravity="center"
+        android:padding="20dp"
         android:background="@drawable/edit"/>
 
 </LinearLayout>

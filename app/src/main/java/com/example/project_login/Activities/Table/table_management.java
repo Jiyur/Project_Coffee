@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.project_login.Activities.Bill.BillActivity;
+import com.example.project_login.Activities.Global;
 import com.example.project_login.Activities.HomePageActivity;
 import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.Adapter.TableAdapter;
@@ -218,7 +220,6 @@ public class table_management extends AppCompatActivity {
         TextInputEditText idBill_txt = dialog.findViewById(R.id.idBill_txt);
         TextInputEditText status_txt = dialog.findViewById(R.id.status_txt);
         Button save_btn = dialog.findViewById(R.id.save_btn);
-        Button cancel_btn = dialog.findViewById(R.id.cancell_btn);
 
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,13 +229,6 @@ public class table_management extends AppCompatActivity {
             }
         });
 
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                Toast.makeText(table_management.this, "Cancel", Toast.LENGTH_SHORT).show();
-            }
-        });
         dialog.show();
     }
 
@@ -260,11 +254,16 @@ public class table_management extends AppCompatActivity {
         order_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(table_management.this, MenuOrderActivity.class);
+                Intent intent = new Intent(table_management.this, com.example.project_login.Activities.menu_category.class);
                 Bundle b = new Bundle();
                 b.putString("tableID/tableName", tableList.get(pos).getIdTable() + "/" + ((Integer) (pos + 1)).toString() );
                 intent.putExtras(b);
                 startActivity(intent);
+//                Intent intent = new Intent(table_management.this, com.example.project_login.Activities.menu_category.class);
+//                intent.putExtra("tableID", tableList.get(pos).getIdTable());
+//                intent.putExtra("tableName", ((Integer) (pos + 1)).toString());
+//                startActivity(intent);
+                Global.check = true;
                 dialog.dismiss();
             }
         });
