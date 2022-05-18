@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class HomePageActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     @Override
@@ -99,7 +101,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(sharedPreferences.getString("user_role","").equals("manager")){
-                    Intent intent = new Intent(HomePageActivity.this, menu_category.class);
+                    Intent intent = new Intent(HomePageActivity.this, ListBillActivity.class);
                     startActivity(intent );
                 }
                 else{

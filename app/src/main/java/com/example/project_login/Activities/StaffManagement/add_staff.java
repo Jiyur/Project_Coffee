@@ -95,6 +95,7 @@ public class add_staff extends AppCompatActivity {
         }
 
         User user = new User(fullName, phone, pass, role, gender, birth);
+        user.setIsVerified("Yes");
         mDatabase.child(user.getPhone()).setValue(user, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
