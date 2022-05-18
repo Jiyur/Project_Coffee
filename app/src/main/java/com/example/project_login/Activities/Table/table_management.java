@@ -10,8 +10,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -36,6 +38,7 @@ import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.Adapter.TableAdapter;
 import com.example.project_login.DAO.BillDAO;
 import com.example.project_login.DAO.TableDAO;
+import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.Bill;
 import com.example.project_login.DTO.Table;
 import com.example.project_login.R;
@@ -60,6 +63,7 @@ public class table_management extends AppCompatActivity {
     List<Table> tableList;
     private DatabaseReference mDatabase;
     private Table table;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +74,8 @@ public class table_management extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mDatabase = TableDAO.getMyDatabase();
+
+        sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -152,7 +158,12 @@ public class table_management extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.add_item:
-                add_table();
+                if(sharedPreferences.getString("user_role", "").equals("manager")){
+                    add_table();
+                }else{
+                    Toast.makeText(this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
+
             default:break;
         }
 
@@ -190,10 +201,20 @@ public class table_management extends AppCompatActivity {
         table = (Table) tableAdapter.getItem(pos);
         switch (item.getItemId()){
             case R.id.delete_item:
-                TableDAO.delete(table.getIdTable(), table_management.this);
+//                TableDAO.delete(table.getIdTable(), table_management.this);
+                if(sharedPreferences.getString("user_role", "").equals("manager")){
+                    TableDAO.delete(table.getIdTable(), table_management.this);
+                }else{
+                    Toast.makeText(this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.edit_item:
-                editTable(Gravity.CENTER);
+//                editTable(Gravity.CENTER);
+                if(sharedPreferences.getString("user_role", "").equals("manager")){
+                    editTable(Gravity.CENTER);
+                }else{
+                    Toast.makeText(this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:break;
         }

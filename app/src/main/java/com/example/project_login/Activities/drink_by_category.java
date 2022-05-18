@@ -217,13 +217,28 @@ public class drink_by_category extends AppCompatActivity {
         drink =  (Drinks) drinkAdapter.getItem(pos);
         switch (item.getItemId()){
             case R.id.delete_item:
-                DrinkDAO.delete(drink.getId(), drink_by_category.this);
+//                DrinkDAO.delete(drink.getId(), drink_by_category.this);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    DrinkDAO.delete(drink.getId(), drink_by_category.this);
+                }
+                else{
+                    Toast.makeText(drink_by_category.this, "Bạn không có quyền thực hiện chức năng này !", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.edit_item:
-                Intent intent = new Intent(drink_by_category.this, edit_drink.class);
-                intent.putExtra("Category", category);
-                intent.putExtra("Drink", drink);
-                startActivity(intent);
+//                Intent intent = new Intent(drink_by_category.this, edit_drink.class);
+//                intent.putExtra("Category", category);
+//                intent.putExtra("Drink", drink);
+//                startActivity(intent);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Intent intent = new Intent(drink_by_category.this, edit_drink.class);
+                    intent.putExtra("Category", category);
+                    intent.putExtra("Drink", drink);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(drink_by_category.this, "Bạn không có quyền thực hiện chức năng này !", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:break;
         }

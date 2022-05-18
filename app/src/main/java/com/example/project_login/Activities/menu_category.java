@@ -192,10 +192,22 @@ public class menu_category extends AppCompatActivity {
         category = (Category) menuCategoryAdapter.getItem(pos);
         switch (item.getItemId()){
             case R.id.delete_item:
-                CategoryDAO.delete(category.getCatName(), menu_category.this);
+//                CategoryDAO.delete(category.getCatName(), menu_category.this);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    CategoryDAO.delete(category.getCatName(), menu_category.this);
+                }
+                else{
+                    Toast.makeText(menu_category.this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.edit_item:
-                Edit(Gravity.CENTER);
+//               Edit(Gravity.CENTER);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Edit(Gravity.CENTER);
+                }
+                else{
+                    Toast.makeText(menu_category.this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:break;
         }
