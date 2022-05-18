@@ -51,7 +51,7 @@ public class staff_profile extends AppCompatActivity {
         positionText = findViewById(R.id.position_textview);
         phoneText = findViewById(R.id.phone_textview);
         birthText = findViewById(R.id.birth_textview);
-        genderText = findViewById(R.id.birth_textview);
+        genderText = findViewById(R.id.gender_textview);
         passText = findViewById(R.id.pass_textview);
 
         toolbar = findViewById(R.id.profile_toolbar);
