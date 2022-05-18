@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_login.Activities.HomePageActivity;
+import com.example.project_login.Activities.MainActivity;
 import com.example.project_login.DAO.UserDAO;
+import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -84,13 +86,23 @@ public class VerifyOTPActivity extends AppCompatActivity {
                                     buttonVerify.setVisibility(View.VISIBLE);
                                     if(task.isSuccessful()){
                                         //Xác nhận người dùng đã xác thực tài khoản
-                                        if(!getIntent().getStringExtra("action").equals("reset")){
+                                        if(!getIntent().getStringExtra("action").equals("reset")&&!getIntent().getStringExtra("action").equals("signup")){
                                             myDatabase.child("0"+textMobile.getText().toString().substring(4).trim()).child("isVerified").setValue("Yes");
                                             //Chuyển vào homepage
                                             Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             intent.putExtra("mobile_phone","0"+textMobile.getText().toString().substring(4).trim());
                                             startActivity(intent);
+                                        }
+                                        else if(!getIntent().getStringExtra("action").equals("reset")){
+                                            User user=(User) getIntent().getParcelableExtra("USER_INFO");
+                                            user.setIsVerified("Yes");
+                                            myDatabase.child(user.getPhone()).setValue(user);
+                                            Toast.makeText(VerifyOTPActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                            Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            finishAffinity();
+
                                         }
                                         else{
                                             Intent intent=new Intent(getApplicationContext(),SetNewPassword.class);

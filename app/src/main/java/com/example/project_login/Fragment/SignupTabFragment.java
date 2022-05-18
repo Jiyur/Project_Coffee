@@ -1,5 +1,6 @@
 package com.example.project_login.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.project_login.Activities.LoginSignup.SendOTPActivity;
 import com.example.project_login.DAO.UserDAO;
 import com.example.project_login.DTO.User;
 import com.example.project_login.R;
@@ -65,8 +67,12 @@ public class SignupTabFragment extends Fragment {
                             }
                             else{
                                 User user=new User(fullName,phoneStr,passwordStr,"staff");
-                                UserDAO.insert(phoneStr,user);
-                                Toast.makeText(getContext(),"Register Successful",Toast.LENGTH_SHORT).show();
+                                Intent intent=new Intent(getActivity(), SendOTPActivity.class);
+                                intent.putExtra("USER_INFO",user);
+                                intent.putExtra("action","signup");
+                                startActivity(intent);
+//                                UserDAO.insert(phoneStr,user);
+//                                Toast.makeText(getContext(),"Register Successful",Toast.LENGTH_SHORT).show();
 
                             }
                         }

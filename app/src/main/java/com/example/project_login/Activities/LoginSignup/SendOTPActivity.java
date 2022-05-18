@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.project_login.DTO.User;
 import com.example.project_login.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SendOTPActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,11 @@ public class SendOTPActivity extends AppCompatActivity {
 
         inputMobile.setText(getIntent().getStringExtra("mobile_phone"));
         String action=getIntent().getStringExtra("action").trim();
+        if(action.equals("signup")){
+            user=(User) getIntent().getParcelableExtra("USER_INFO");
+            inputMobile.setText(user.getPhone().substring(1));
+
+        }
         mAuth=FirebaseAuth.getInstance();
         buttonGetOTP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +80,9 @@ public class SendOTPActivity extends AppCompatActivity {
                                 intent.putExtra("mobile",inputMobile.getText().toString());
                                 intent.putExtra("verificationId",s);
                                 intent.putExtra("action",action);
+                                if(action.equals("signup")){
+                                    intent.putExtra("USER_INFO",user);
+                                }
                                 startActivity(intent);
                             }
 
