@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.project_login.Activities.Bill.ListBillActivity;
 import com.example.project_login.Activities.StaffManagement.management_staff;
@@ -57,7 +58,8 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, staff_profile.class);
-                startActivity(intent );
+                startActivity(intent);
+
             }
         });
 
@@ -65,8 +67,13 @@ public class HomePageActivity extends AppCompatActivity {
         mapMaterialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomePageActivity.this, management_staff.class);
-                startActivity(intent );
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Intent intent = new Intent(HomePageActivity.this, management_staff.class);
+                    startActivity(intent );
+                }
+                else{
+                    Toast.makeText(HomePageActivity.this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -91,16 +98,26 @@ public class HomePageActivity extends AppCompatActivity {
         listBillMaterialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomePageActivity.this, ListBillActivity.class);
-                startActivity(intent);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Intent intent = new Intent(HomePageActivity.this, menu_category.class);
+                    startActivity(intent );
+                }
+                else{
+                    Toast.makeText(HomePageActivity.this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         final com.google.android.material.card.MaterialCardView revenue = findViewById(R.id.doanhThuBTN);
         revenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomePageActivity.this, DoanhThuActivity.class);
-                startActivity(intent);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Intent intent = new Intent(HomePageActivity.this, DoanhThuActivity.class);
+                    startActivity(intent );
+                }
+                else{
+                    Toast.makeText(HomePageActivity.this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

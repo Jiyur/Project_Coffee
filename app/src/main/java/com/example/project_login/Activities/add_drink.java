@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -44,11 +46,11 @@ public class add_drink extends AppCompatActivity {
     Drinks drink;
     DatabaseReference mDatabase;
     StorageReference storageReference;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_drink);
-
         name_txt = findViewById(R.id.textInputEditText_name);
         price_txt = findViewById(R.id.textInputEditText_price);
         category_txt = findViewById(R.id.textInputEditText_category);

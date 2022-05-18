@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -62,10 +64,12 @@ public class drink_by_category extends AppCompatActivity {
     Drinks drink;
     String category;
     String tableID = "", tableName = "";
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink_by_category);
+        sharedPreferences=getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         mDatabase = DrinkDAO.getMyDatabase();
         toolbar = findViewById(R.id.listDrink_toolbar);
         gridView = findViewById(R.id.drink_gridView);
@@ -186,9 +190,15 @@ public class drink_by_category extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.add_item:
-                Intent intent = new Intent(drink_by_category.this, add_drink.class);
-                intent.putExtra("Category", category);
-                startActivity(intent);
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Intent intent = new Intent(drink_by_category.this, add_drink.class);
+                    intent.putExtra("Category", category);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(drink_by_category.this, "Bạn không có quyền thực hiện chức năng này !", Toast.LENGTH_SHORT).show();
+                }
+
             default:break;
         }
         return super.onOptionsItemSelected(item);

@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.project_login.Activities.Order.MenuOrderActivity;
 import com.example.project_login.Activities.Order.OrderActivity;
+import com.example.project_login.Activities.StaffManagement.management_staff;
 import com.example.project_login.Adapter.MenuCategoryAdapter;
 import com.example.project_login.DAO.CategoryDAO;
 import com.example.project_login.DAO.DrinkDAO;
@@ -62,11 +65,12 @@ public class menu_category extends AppCompatActivity {
     Uri imageUri;
     StorageReference storageReference;
     ImageView imageView;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_category);
-
+        sharedPreferences=getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         list_category = findViewById(R.id.list_category);
         mDatabase = CategoryDAO.getMyDatabase();
         toolbar = findViewById(R.id.list_category_toolbar);
@@ -160,8 +164,14 @@ public class menu_category extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.add_item:
-                Intent intent = new Intent(menu_category.this, add_category.class);
-                startActivity(intent);
+
+                if(sharedPreferences.getString("user_role","").equals("manager")){
+                    Intent intent = new Intent(menu_category.this, add_drink.class);
+                    startActivity(intent );
+                }
+                else{
+                    Toast.makeText(menu_category.this, "Bạn không có quyền truy cập chức năng này !", Toast.LENGTH_SHORT).show();
+                }
 //                finish();
                 break;
             default:break;
