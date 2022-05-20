@@ -166,7 +166,7 @@ public class menu_category extends AppCompatActivity {
             case R.id.add_item:
 
                 if(sharedPreferences.getString("user_role","").equals("manager")){
-                    Intent intent = new Intent(menu_category.this, add_drink.class);
+                    Intent intent = new Intent(menu_category.this, add_category.class);
                     startActivity(intent );
                 }
                 else{
