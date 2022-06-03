@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +38,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class add_drink extends AppCompatActivity {
+    private NotificationManagerCompat notificationManagerCompat;
     ProgressDialog progressDialog;
     TextInputEditText name_txt, price_txt, category_txt;
     ImageView imageView;
@@ -79,6 +83,8 @@ public class add_drink extends AppCompatActivity {
                 Add();
             }
         });
+        this.notificationManagerCompat = NotificationManagerCompat.from(this);
+
 
     }
 
@@ -93,7 +99,19 @@ public class add_drink extends AppCompatActivity {
             }
         }
     }
+    private void sendOnChannel(String name)  {
+        String intro="Món mới: "+name;
+        Notification notification = new NotificationCompat.Builder(this, NotificationApp.CHANNEL_ID)
+                .setSmallIcon(R.drawable.add_item_icon)
+                .setContentTitle("Coffee Android")
+                .setContentText(intro)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
 
+        int notificationId = 1;
+        this.notificationManagerCompat.notify(notificationId, notification);
+    }
     public void Add(){
         if(imageUri == null || name_txt.equals("") || price_txt.equals("")){
             Toast.makeText(this, "You must fill in all the information before adding", Toast.LENGTH_SHORT).show();
@@ -121,6 +139,7 @@ public class add_drink extends AppCompatActivity {
                                             drink = new Drinks(category_txt.getText().toString(), name_txt.getText().toString(),
                                                     uri.toString(), Integer.parseInt(price_txt.getText().toString()));
                                             DrinkDAO.insert(add_drink.this, drink);
+                                            sendOnChannel(drink.getName());
                                             add_drink.super.onBackPressed();
                                         }
                                     });
